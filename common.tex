@@ -1,0 +1,28 @@
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsfonts}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage[backend=biber]{biblatex}
+\usepackage{xcolor}
+
+\tikzset{>=latex}
+\addbibresource{mecanique.bib}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{\mathrm{ #1 }}}}
+\newcommand{\rhat}{\vec{\hat{r}}}
+%\newcommand{\xhat}{\vec{\hat{x}}}
+%\newcommand{\yhat}{\vec{\hat{y}}}
+%\newcommand{\zhat}{\vec{\hat{z}}}
+\newcommand{\xhat}{\vec{i}}
+\newcommand{\yhat}{\vec{j}}
+\newcommand{\zhat}{\vec{k}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\der}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dif}{d}
+\newcommand{\ddif}{\,d}
+\newcommand{\grad}{\vec{\nabla}}
