@@ -1,4 +1,4 @@
-\documentclass[letterpaper]{tufte-book}
+\documentclass[letterpaper, twoside]{tufte-book}
 
 \usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
@@ -7,11 +7,14 @@
 \usepackage{siunitx}
 \usepackage{tikz}
 \usepackage{hyperref}
-\usepackage[backend=biber]{biblatex}
+%\usepackage[backend=biber, autocite=footnote]{biblatex}
 \usepackage{xcolor}
+\usepackage{caption}
+\usepackage{booktabs}
 
 \tikzset{>=latex}
-\addbibresource{mecanique.bib}
+\usetikzlibrary{calc}
+\sisetup{locale=FR, per-mode=symbol}
 
 \newcommand{\abs}[1]{\left| #1 \right|}
 \renewcommand{\vec}[1]{\ensuremath{\boldsymbol{\mathrm{ #1 }}}}
@@ -25,14 +28,13 @@
 \newcommand{\dif}{d}
 \newcommand{\ddif}{\,d}
 \newcommand{\grad}{\vec{\nabla}}
+\newcommand{\exemple}[1]{\begin{fullwidth}#1\end{fullwidth}}
 
 \title{Mécanique}
 \author{Loïc Séguin-Charbonneau}
 
 \includeonly{
-  titlepage,
   01_Introduction/Introduction,
-  bibliography
 }
 
 \begin{document}
@@ -44,7 +46,8 @@
 \include{01_Introduction/Introduction}
 
 
-\printbibliography
+\bibliography{mecanique}
+\bibliographystyle{plainnat}
 
 
 \end{document}
