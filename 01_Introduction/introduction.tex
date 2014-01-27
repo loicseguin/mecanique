@@ -239,6 +239,162 @@ volume (\si{\meter\cubed}) et la masse volumique
 (\si{\kilogram\per\meter\cubed}).
 
 
+
+\subsection{Référentiel et système de coordonnées}
+
+Revenons à notre ourson.  Nous savons maintenant ce qu'est la masse et le
+temps, mais il reste à définir la position.  Cette dernière est étroitement
+liée à la longueur, mais une seule longueur n'est pas suffisante, en général,
+pour décrire une position.
+
+Comment peut-on définir une position?  De quoi a-t-on
+besoin? On peut pointer du doigt et crier ``là! là!'', mais cela ne décrit pas
+très clairement une position, ou du moins, la description est incomplète.  Le
+doigt pointé indique dans quelle direction le point d'intérêt se trouve, mais
+ne donne aucune indication sur la distance à laquelle il se trouve.  Par
+contre, si on pointe du doigt en disant ``l'ourson se trouve à trois mètres'',
+alors on a une description précise et complète.
+
+\begin{marginfigure}
+  \begin{tikzpicture}[scale=3]
+    \coordinate (origin) at (0, 0, 0);
+    \coordinate (teddyx) at (0, 0, 0.4);
+    \coordinate (teddyy) at (0.6, 0, 0);
+    \coordinate (teddyz) at (0, 0.7, 0);
+    \coordinate (teddy) at ($(teddyx) + (teddyy) + (teddyz)$);
+    \draw[->] (origin) -- (1, 0, 0) node[right] {$y$};
+    \draw[->] (origin) -- (0, 1, 0) node[left] {$z$};
+    \draw[->] (origin) -- (0, 0, 1) node[anchor=north east] {$x$};
+    \begin{scope}[shift={(teddy)}, scale=0.05]
+      \teddybear
+    \end{scope}
+    \draw[->, very thick] (origin) -- (teddy);
+    \draw[dotted] (origin) -- ++($(teddyx) + (teddyy)$) -- ++(teddyz);
+    \draw[dotted] (teddyz) -- ++($(teddyx) + (teddyy)$);
+    \draw (-0.12, -0.12) arc (-80:-45:0.6 and 0.2);
+    \node at (0.25, 0, 0.45) {$\varphi$};
+    \draw (0, 0.25, 0) arc (90:50:0.25);
+    \node at (0.12, 0.3) {$\theta$};
+  \end{tikzpicture}
+\end{marginfigure}
+
+En pointant du doigt, on accomplit plusieurs choses.  D'abord, on définit un
+point de référence, soit l'épaule du pointeur.  Ensuite, on spécifie deux
+angles : un \textbf{angle azimutal}, $\varphi$, entre une direction
+particulière (disons le Nord) et l'ourson, et un \textbf{angle d'élévation},
+$\theta$, par rapport à l'horizontale.  Enfin, en donnant la \textbf{distance}
+par rapport au point de référence on spécifie la position de l'ourson sans
+aucune ambigüité.
+
+Il y a d'autres approches valides.  Par exemple, on peut spécifier la distance
+\marginnote{On remarque que dans les deux cas, il faut trois nombres pour
+  décrire une position.  C'est pour cette raison qu'on dit que le monde dans
+  lequel nous vivons est à trois dimensions.} à partir de la porte de la classe
+en longeant un premier mur (on peut s'imaginer un axe imaginaire le long de ce
+mur et l'appeler $x$), puis une distance parallèle aux autres murs (en
+direction d'un axe $y$) et enfin une hauteur (l'axe $z$).  Ces trois valeurs
+spécifient aussi la position de l'ourson de façon tout à fait claire.
+
+Chacune de ces façons de procéder correspond à un \textbf{système de
+  coordonnées}.  Dans le premier cas, ce sont les \textbf{coordonnées
+  sphériques}, et dans le deuxième cas, les \textbf{coordonnées cartésiennes}.
+Un système de coordonnées est un système qui permet de repérer des points dans
+l'espace à l'aide de nombres.  \marginnote{Benson, p. 15} Dans le cours, nous
+n'étudierons que des problèmes à une dimension et à deux dimensions.
+
+En physique, un système de coordonnées n'existe jamais dans un néant absolu.
+Il est toujours défini dans un référentiel.  Un \textbf{référentiel} est un
+système de référence matériel, comme la salle de classe, l'intérieur d'un
+ascenseur ou une table de laboratoire.  Dans un même référentiel, on peut
+définir plusieurs systèmes de coordonnées.
+\begin{marginfigure}
+  \begin{tikzpicture}[>=latex, scale=5]
+    \coordinate (origin) at (0, 0);
+    \coordinate (teddyx) at (0.4, 0);
+    \coordinate (teddyy) at (0, 0.6);
+    \coordinate (teddy) at ($(teddyx) + (teddyy)$);
+    \draw[->] (origin) -- (1, 0) node[right] {$x$};
+    \draw[->] (origin) -- (0, 1) node[left] {$y$};
+    \begin{scope}[shift={(teddy)}, scale=0.05]
+      \teddybear
+    \end{scope}
+    \draw[very thick] (origin) -- node[above] {$r$} (teddy);
+    \draw[dashed] (teddyx) node[below] {$x$} -- (teddy) -- (teddyy) node[left] {$y$};
+    \draw (0.1, 0) arc (0:54:0.1);
+    \node at (0.13, 0.07) {$\theta$};
+  \end{tikzpicture}
+\end{marginfigure}
+
+Deux systèmes de coordonnées à deux dimensions seront particulièrement utiles
+dans le cours : le \textbf{système cartésien} et le \textbf{système polaire}.
+Dans le système polaire, la position de l'ourson est spécifiée par un angle à
+partir d'une direction fixe (souvent l'axe des $x$), $\theta$, et une distance
+à partir de l'origine, $r$.  Dans ce système de coordonnées, $r$ est toujours
+un nombre plus grand ou égal à zéro.  Dans le système cartésien, la position
+est spécifiée par deux valeurs numériques : $x$ et $y$.  Ces deux valeurs
+peuvent être négatives ou positives.
+
+En général, les coordonnées cartésiennes sont reliées aux coordonnées polaires
+par les relations suivantes :
+
+\begin{align*}
+  x &= r\cos\theta \\
+  y &= r\sin\theta \\
+  r &= \sqrt{x^2 + y^2} \\
+  \tan\theta &= \frac{y}{x}
+\end{align*}
+
+\subsection{Exemple de conversion du système de coordonnées cartésiennes au
+  système de coordonnées polaires}
+
+\exemple{
+  Supposons que la position d'un objet est donnée par les coordonnées
+  cartésiennes $(x, y) = (\SI{3}{\meter}, \SI{2}{\meter})$.  Déterminer les
+  coordonnées polaires de cet objet.
+
+  On trouve d'abord $r$ avec le théorème de Pythagore:
+  \begin{align*}
+    r &= \sqrt{x^2 + y^2} \\
+      &= \sqrt{(\SI{3}{\meter})^2 + (\SI{2}{\meter})^2} \\
+      &= \sqrt{\SI{14}{\meter\squared}} \\
+      &= \SI{3.74}{\meter}
+  \end{align*}
+  Ensuite, on trouve l'angle.  Comme le point est dans le premier quadrant,
+  l'angle sera nécessairement entre \num{0} et \SI{90}{\degree}.
+  \begin{align*}
+    \tan\theta &= \frac{y}{x} \\
+               &= \frac{\SI{2}{\meter}}{\SI{3}{\meter}} \\
+        \theta &= \arctan\left(\frac{2}{3}\right) \\
+               &= \SI{33.7}{\degree}
+  \end{align*}
+  Le point en question est donc décrit par les coordonnées polaires
+  $(r, \theta) = (\SI{3.74}{\meter}; \SI{33.7}{\degree})$.
+}
+
+\subsection{Exemple de conversion du système de coordonnées polaires au
+  système de coordonnées cartésiennes}
+
+\exemple{
+  Supposons que la position d'un objet est donnée par les coordonnées
+  polaires $(r, \theta) = (\SI{3}{\meter}, \SI{230}{\degree})$.  Déterminer les
+  coordonnées cartésiennes de cet objet.
+
+  Il suffit d'appliquer les définitions du sinus et du cosinus.
+  \begin{align*}
+    x &= r\cos\theta \\
+      &= \SI{3}{\meter} \cos \SI{230}{\degree} \\
+      &= \SI{-1.93}{\meter}
+  \end{align*}
+  \begin{align*}
+    y &= r\sin\theta \\
+      &= \SI{3}{\meter} \sin \SI{230}{\degree} \\
+      &= \SI{-2.30}{\meter}
+  \end{align*}
+  Le point en question est donc décrit par les coordonnées cartésiennes
+  $(x, y) = (\SI{-1.93}{\meter}; \SI{-2.30}{\meter})$.
+}
+
+
 \subsection{La notation scientifique et les chiffres significatifs}
 
 La physique étudie des phénomènes qui se produisent à l'échelle atomique et à
@@ -338,89 +494,3 @@ mètres, puis de multiplier les deux valeurs pour obtenir l'aire.
     &= \SI{4.17e-5}{\kilogram\per\meter\cubed\per\second}
   \end{align*}
 }
-
-
-\subsection{Référentiel et système de coordonnées}
-
-Revenons à notre ourson.  Nous savons maintenant ce qu'est la masse et le
-temps, mais il reste à définir la position.  Cette dernière est étroitement
-liée à la longueur, mais une seule longueur n'est pas suffisante, en général,
-pour décrire une position.
-
-Comment peut-on définir une position?  De quoi a-t-on
-besoin? On peut pointer du doigt et crier ``là! là!'', mais cela ne décrit pas
-très clairement une position, ou du moins, la description est incomplète.  Le
-doigt pointé indique dans quelle direction le point d'intérêt se trouve, mais
-ne donne aucune indication sur la distance à laquelle il se trouve.  Par
-contre, si on pointe du doigt en disant ``l'ourson se trouve à trois mètres'',
-alors on a une description précise et complète.
-
-\begin{marginfigure}
-  \begin{tikzpicture}[scale=3]
-    \coordinate (origin) at (0, 0, 0);
-    \coordinate (teddyx) at (0, 0, 0.4);
-    \coordinate (teddyy) at (0.6, 0, 0);
-    \coordinate (teddyz) at (0, 0.7, 0);
-    \coordinate (teddy) at ($(teddyx) + (teddyy) + (teddyz)$);
-    \draw[->] (origin) -- (1, 0, 0) node[right] {$y$};
-    \draw[->] (origin) -- (0, 1, 0) node[left] {$z$};
-    \draw[->] (origin) -- (0, 0, 1) node[anchor=north east] {$x$};
-    \begin{scope}[shift={(teddy)}, scale=0.05]
-      \teddybear
-    \end{scope}
-    \draw[->, very thick] (origin) -- (teddy);
-    \draw[dotted] (origin) -- ++($(teddyx) + (teddyy)$) -- ++(teddyz);
-    \draw[dotted] (teddyz) -- ++($(teddyx) + (teddyy)$);
-    \draw (-0.12, -0.12) arc (-80:-45:0.6 and 0.2);
-    \node at (0.25, 0, 0.45) {$\varphi$};
-    \draw (0, 0.25, 0) arc (90:50:0.25);
-    \node at (0.12, 0.3) {$\theta$};
-  \end{tikzpicture}
-\end{marginfigure}
-
-En pointant du doigt, on accomplit plusieurs choses.  D'abord, on définit un
-point de référence, soit l'épaule du pointeur.  Ensuite, on spécifie deux
-angles : un \textbf{angle azimutal}, $\varphi$, entre une direction
-particulière (disons le Nord) et l'ourson, et un \textbf{angle d'élévation},
-$\theta$, par rapport à l'horizontale.  Enfin, en donnant la \textbf{distance}
-par rapport au point de référence on spécifie la position de l'ourson sans
-aucune ambigüité.
-
-Il y a d'autres approches valides.  Par exemple, on peut spécifier la distance
-\marginnote{On remarque que dans les deux cas, il faut trois nombres pour
-  décrire une position.  C'est pour cette raison qu'on dit que le monde dans
-  lequel nous vivons est à trois dimensions.} à partir de la porte de la classe
-en longeant un premier mur (on peut s'imaginer un axe imaginaire le long de ce
-mur et l'appeler $x$), puis une distance parallèle aux autres murs (en
-direction d'un axe $y$) et enfin une hauteur (l'axe $z$).  Ces trois valeurs
-spécifient aussi la position de l'ourson de façon tout à fait claire.
-
-Chacune de ces façons de procéder correspond à un \textbf{système de
-  coordonnées}.  Dans le premier cas, ce sont les \textbf{coordonnées
-  sphériques}, et dans le deuxième cas, les \textbf{coordonnées cartésiennes}.
-Un système de coordonnées est un système qui permet de repérer des points dans
-l'espace à l'aide de nombres.  \marginnote{Benson, p. 15} Dans le cours, nous
-n'étudierons que des problèmes à une dimension et à deux dimensions.
-
-En physique, un système de coordonnées n'existe jamais dans un néant absolu.
-Il est toujours défini dans un référentiel.  Un \textbf{référentiel} est un
-système de référence matériel, comme la salle de classe, l'intérieur d'un
-ascenseur ou une table de laboratoire.  Dans un même référentiel, on peut
-définir plusieurs systèmes de coordonnées.
-
-Deux systèmes de coordonnées à deux dimensions seront particulièrement utiles
-dans le cours : le système cartésien et le système polaire.
-
-\begin{marginfigure}
-  
-\end{marginfigure}
-
-\fullwidth{
-\subsection{Exemple de conversion du système de coordonnées cartésiennes au
-  système de coordonnées polaires}
-}
-
-\exemple{
-
-}
-
