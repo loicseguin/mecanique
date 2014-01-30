@@ -1,40 +1,14 @@
 \documentclass[letterpaper, twoside]{tufte-book}
 
-\usepackage[french]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{amsmath, amsfonts}
-\usepackage{siunitx}
-\usepackage{tikz}
-\usepackage{hyperref}
-%\usepackage[backend=biber, autocite=footnote]{biblatex}
-\usepackage{xcolor}
-\usepackage{caption}
-\usepackage{booktabs}
-
-\tikzset{>=latex}
-\usetikzlibrary{calc}
-\sisetup{locale=FR, per-mode=symbol}
-
-\newcommand{\abs}[1]{\left| #1 \right|}
-\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{\mathrm{ #1 }}}}
-\newcommand{\rhat}{\vec{\hat{r}}}
-\newcommand{\xhat}{\vec{i}}
-\newcommand{\yhat}{\vec{j}}
-\newcommand{\zhat}{\vec{k}}
-\newcommand{\real}{\mathbb{R}}
-\newcommand{\der}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
-\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\dif}{d}
-\newcommand{\ddif}{\,d}
-\newcommand{\grad}{\vec{\nabla}}
-\newcommand{\exemple}[1]{\begin{fullwidth}#1\end{fullwidth}}
+\input{common}
 
 \title{Mécanique}
 \author{Loïc Séguin-Charbonneau}
 
 \includeonly{
   01_Introduction/Introduction,
+  02_Vecteurs/vecteurs,
+  03_Cinematique/cinematique
 }
 
 \begin{document}
@@ -44,6 +18,8 @@
 
 
 \include{01_Introduction/Introduction}
+\include{02_Vecteurs/vecteurs}
+\include{03_Cinematique/cinematique}
 
 
 \bibliography{mecanique}

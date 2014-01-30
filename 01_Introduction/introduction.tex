@@ -494,3 +494,92 @@ mètres, puis de multiplier les deux valeurs pour obtenir l'aire.
     &= \SI{4.17e-5}{\kilogram\per\meter\cubed\per\second}
   \end{align*}
 }
+
+
+\subsection{Analyse dimensionnelle}
+
+Une longueur ne peut être égal qu'à une longueur.  Un temps ne peut être égal
+qu'à un temps.  Il en va de même de toutes les grandeurs physiques de base,
+qu'on appelle dans ce contexte des \textbf{dimensions}.  Par conséquent, toutes
+les équations de la physique doivent avoir les mêmes unités de part et d'autre
+de l'égalité.  Si $F$ est la magnitude d'une force, $m$ une masse et $v$ une
+vitesse, alors l'équation
+\[
+  F = \frac{m}{v} 
+\]
+n'a pas de sens.  En effet, du côté gauche de l'égalité on a une force, soit
+une grandeur qui a les dimensions de $ML/T^2$, alors que le côté droit de
+l'égalité a les dimensions de $MT/L$.
+
+De façon analogue, il est impossible d'additionner des quantités qui n'ont pas
+les mêmes dimensions.  Par exemple, on ne peut pas additionner une longueur à
+une aire.
+
+\subsection{Exemple d'analyse dimensionnelle}
+
+\exemple{
+  Essayons de déterminer une relation entre le temps de chute d'un corps à la
+  surface de la Terre et la hauteur à partir de laquelle le corps tombe.
+
+  Il est raisonnable de croire que le temps de chute dépendra de la hauteur
+  initiale du corps, de sa masse et de l'accélération gravitationnelle.  Par
+  contre nous ne savons pas si la dépendance est linéaire, quadratique, cubique
+  ou autre.  Nous introduisons donc trois exposants, $\alpha$, $\beta$ et
+  $\gamma$, ainsi qu'une constante sans dimension $k$.  La relation proposée
+  est
+  \[
+    t = k m^\alpha h^\beta g^\gamma
+  \]
+  Pour trouver les valeurs des exposants, nous n'avons qu'à s'assurer que les
+  dimensions sont les mêmes de part et d'autre de l'équation.  On a
+  \begin{align*}
+    [t] &= T \\
+    [m] &= M \\
+    [h] &= L \\
+    [g] &= L/T^2
+  \end{align*}
+  Il n'y a pas de masse à gauche et ni la hauteur ni l'accélération
+  gravitationnelle ne contiennent la dimension de masse.  Par conséquent,
+  l'exposant de $m$ doit être $0$, i.e., la masse n'apparaît pas dans cette
+  relation.  Pour que la longueur du côté droit disparaisse, il faut que
+  \[
+    \beta + \gamma = 0
+  \]
+  Pour obtenir une unité de temps, il faut que
+  \[
+    -2\gamma = 1
+  \]
+  Autrement dit, $\alpha = 0$, $\beta = 1/2$ et $\gamma = -1/2$.  La relation
+  recherchée est donc
+  \[
+    t = k\sqrt{\frac{h}{g}}
+  \]
+  Une simple analyse dimensionnelle nous permet donc de déterminer que le temps
+  de chute doit être proportionnel à la racine carrée de la hauteur.
+}
+
+\subsection{Exercice sur l'analyse dimensionnelle}
+
+\exemple{
+  En relativité restreinte, l'énergie $E$ d'un objet est reliée à sa masse $m$
+  sa vitesse $v$, et la vitesse de la lumière $c$.  Les dimensions de ces
+  quantités sont les suivantes
+  \begin{align*}
+    [E] &= ML^2/T^2 \\
+    [m] &= M \\
+    [v] &= L/T \\
+    [c] &= L/T
+  \end{align*}
+  On considère aussi une constante sans dimension $\gamma$.
+
+  Laquelle des relation suivantes est un candidat raisonnable pour la relation
+  entre l'énergie, la masse et la vitesse d'un objet.
+
+  \begin{enumerate}
+    \item $E = \gamma mv + mc^2$
+    \item $E = \frac{1}{2} m \left(\frac{v}{c}\right)^2$
+    \item $E^2 = (\gamma mv)^2c^2 + (mc^2)^2$
+    \item $E^2 = \frac{1}{2} m^2v^2 + (\gamma mc)^2$
+    \item $E^2 = \gamma m v^4 + mc^4$
+  \end{enumerate}
+}

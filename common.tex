@@ -1,0 +1,36 @@
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsthm, amsfonts}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{hyperref}
+%\usepackage[backend=biber, autocite=footnote]{biblatex}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{booktabs}
+
+\tikzset{>=latex}
+\usetikzlibrary{calc}
+\sisetup{locale=FR, per-mode=symbol}
+
+\newcommand{\abs}[1]{\left| #1 \right|}
+%\renewcommand{\vec}[1]{\ensuremath{\overrightarrow{\boldsymbol{\mathrm{ #1 }}}}}
+\newcommand{\rhat}{\vec{\hat{r}}}
+\newcommand{\xhat}{\vec{i}}
+\newcommand{\yhat}{\vec{j}}
+\newcommand{\zhat}{\vec{k}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\der}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dif}{d}
+\newcommand{\ddif}{\,d}
+\newcommand{\grad}{\vec{\nabla}}
+\newcommand{\exemple}[1]{\begin{fullwidth}#1\end{fullwidth}}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\vu}{\vec{u}}
+\newcommand{\vv}{\vec{v}}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+

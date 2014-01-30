@@ -1,0 +1,210 @@
+\documentclass{beamer}
+
+\input{../common}
+
+\begin{document}
+
+\begin{frame}
+  \frametitle{Addition de vecteurs I}
+Schklaktonek lance une rondelle de hockey du point $A$ au point $B$ où Pianotta
+la reçoit et l'envoie vers le filet, au point $C$.  Quel est le déplacement
+total de la rondelle?
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{scope}[opacity=0.5]
+    \draw[rounded corners=25] (0, 0) rectangle (6, 3);
+    \draw[red] (0.5, 0.15) -- (0.5, 2.85);
+    \draw[red] (5.5, 0.15) -- (5.5, 2.85);
+    \draw[red, thick] (3, 0.01) -- (3, 2.99);
+    \draw[blue, thick] (2.2, 0.01) -- (2.2, 2.99);
+    \draw[blue, thick] (3.8, 0.01) -- (3.8, 2.99);
+    \draw[blue] (3, 1.5) circle (0.5);
+  \end{scope}
+  \draw[fill=black] (1, 0.3) circle (1pt);
+  \node[above] (A) at (1, 0.3) {$A$};
+  \draw[fill=black] (3.2, 2.3) circle (1pt);
+  \node[above] (B) at (3.2, 2.3) {$B$};
+  \draw[fill=black] (5.5, 1.5) circle (1pt);
+  \node[above] (C) at (5.5, 1.5) {$C$};
+  \draw[very thick, ->] (1, 0.3) -- (3.2, 2.3);
+  \draw[very thick, ->] (3.2, 2.3) -- (5.5, 1.5);
+  \uncover<2>{
+    \draw[very thick, ->, green!60!black] (1, 0.3) --(5.5, 1.5);
+    \node[fill=white, text=black] at (2.0, 1.8) {$\vec{u}$};
+    \node[fill=white, text=black] at (4.5, 2.3) {$\vec{v}$};
+    \node[text=green!60!black, fill=white] at (3.5, 0.5) {$\vec{u} + \vec{v}$};
+  }
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Addition de vecteurs II}
+En supposant que $\norm{\vec{a}} = \norm{\vec{b}} = \norm{\vec{c}}$, faite
+l'addition des vecteurs suivants, c'est-à-dire calculez $\vec{a} +
+\vec{b} + \vec{c}$.
+
+\vspace{0.5cm}
+
+\only<1>{
+  \begin{tikzpicture}
+    \draw[->] (0, 0) -- node[left] {$\vec{a}$} (2, 4);
+    \draw[dashed] (0, 0) -- (2, 0);
+    \draw (1, 0) arc (0:63:1);
+    \node at (1.3, 0.8) {\SI{60}{\degree}};
+    \begin{scope}[shift={(2, 0)}]
+      \draw[->] (2, 4) -- node[left] {$\vec{b}$} (4, 0);
+      \draw[dashed] (2, 4) -- (4, 4);
+      \draw (3, 4) arc (0:-63:1);
+      \node at (3.3, 3.3) {\SI{60}{\degree}};
+    \end{scope}
+    \begin{scope}[shift={(7, 1)}]
+      \draw[->] (4, 0) -- node[below] {$\vec{c}$} (0, 0);
+    \end{scope}
+  \end{tikzpicture}
+}
+
+\only<2>{
+\begin{columns}
+  \column{0.5\textwidth}
+  \begin{tikzpicture}
+    \draw[->] (0, 0) -- node[left] {$\vec{a}$} (2, 4);
+    \draw (1, 0) arc (0:63:1);
+    \node at (1.3, 0.8) {\SI{60}{\degree}};
+      \draw[->] (2, 4) -- node[left] {$\vec{b}$} (4, 0);
+      \draw[dashed] (2, 4) -- (4, 4);
+      \draw (3, 4) arc (0:-63:1);
+      \node at (3.3, 3.3) {\SI{60}{\degree}};
+      \draw[->] (4, 0) -- node[below] {$\vec{c}$} (0, 0);
+  \end{tikzpicture}
+
+  \column{0.5\textwidth}
+  $\vec{a} + \vec{b} + \vec{c} = \vec{0}$
+\end{columns}
+}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Addition algébrique de vecteurs I}
+
+  \only<1>{
+  Pour se rendre à l'endroit où il doit sauver des naufragés, un pilote
+  d'hélicoptère décolle de l'aéroport et parcourt \SI{20}{\kilo\meter} vers le
+  nord-ouest.  Il bifurque ensuite de \SI{60}{\degree} vers sa droite et
+  parcourt un autre \SI{45}{\kilo\meter}.
+
+  En utilisant la décomposition des vecteurs en fonction des vecteurs
+  unitaires, déterminer le déplacement total effectué par le pilote.
+  }
+
+  \only<2>{
+    {\tiny
+      Pour se rendre à l'endroit où il doit sauver des naufragés, un pilote
+      d'hélicoptère décolle de l'aéroport et parcourt \SI{20}{\kilo\meter} vers le
+      nord-ouest.  Il bifurque ensuite de \SI{60}{\degree} vers sa droite et
+      parcourt un autre \SI{45}{\kilo\meter}.
+
+      En utilisant la décomposition des vecteurs en fonction des vecteurs
+      unitaires, déterminer le déplacement total effectué par le pilote.
+    }
+  }
+
+  \uncover<2>{
+    \begin{columns}
+      \column{0.3\textwidth}
+      \begin{tikzpicture}[scale=0.7]
+        \draw[->] (-2, 0) -- (1, 0) node[right] {$x$};
+        \draw[->] (0, -1) -- (0, 6) node[left] {$y$};
+        \coordinate (A) at (0, 0);
+        \coordinate (B) at ($(0, 0) + (135:2)$);
+        \coordinate (C) at ($(B) + (75:4.5)$);
+        \draw[dashed] (A) -- ($1.4*(B)$);
+        \draw[->, very thick] (A) -- node[below] {$\vu$} (B);
+        \draw (0, 0.6) arc (90:135: 0.6);
+        \node at (-0.3, 0.8) {\SI{45}{\degree}};
+        \draw ($(B) + 0.1*(75:4.5)$) arc (75:135:0.4);
+        \node at (-1.6, 2.2) {\SI{60}{\degree}};
+        \draw[->, very thick] (B) -- node[left] {$\vv$} (C);
+      \end{tikzpicture}
+
+      \column{0.8\textwidth}
+      \vspace{-0.4cm}
+      \begin{eqnarray*}
+        u_x &= -u \sin \SI{45}{\degree} &= -\SI{20}{\kilo\meter} \sin
+          \SI{45}{\degree} = -\SI{14.14213}{\kilo\meter} \\
+        u_y &=  u \cos \SI{45}{\degree} &=  \SI{20}{\kilo\meter} \cos
+          \SI{45}{\degree} = \SI{14.14213}{\kilo\meter} \\
+      \end{eqnarray*}
+      \vspace{-1.2cm}
+      \[
+        \vu = (-\num{14.1}\, \xhat + \num{14.1}\, \yhat) \si{\kilo\meter}
+      \]
+      Pour $\vv$, on note que l'angle entre l'axe des $x$ positifs et
+      le vecteur est \SI{75}{\degree}.
+      \vspace{-0.4cm}
+      \begin{eqnarray*}
+        v_x &= -v \cos \SI{75}{\degree} &= -\SI{45}{\kilo\meter} \cos
+          \SI{75}{\degree} = \SI{11.64685}{\kilo\meter} \\
+        v_y &=  v \sin \SI{75}{\degree} &=  \SI{45}{\kilo\meter} \sin
+          \SI{75}{\degree} = \SI{43.46666}{\kilo\meter} \\
+      \end{eqnarray*}
+      \vspace{-1.2cm}
+      \[
+        \vv = (\num{11.6}\, \xhat + \num{43.5}\, \yhat) \si{\kilo\meter}
+      \]
+      \vspace{-1.0cm}
+      \begin{align*}
+        \vu + \vv &= (-\num{14.14213}\, \xhat + \num{14.14213}\, \yhat) \si{\kilo\meter} \\
+                  &{}  +(\num{11.64685}\, \xhat + \num{43.46666}\, \yhat)
+                    \si{\kilo\meter} \\
+                  &= (-\num{2.50}\, \xhat + \num{57.6}\, \yhat) \si{\kilo\meter}
+      \end{align*}
+    \end{columns}
+  }
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Addition algébrique de vecteurs II}
+
+  En général, est-ce que $\norm{\vv} + \norm{\vu} = \norm{\vv + \vu}$?
+
+  \vspace{1cm}
+
+  \uncover<2>{
+    À partir de la décomposition obtenue à la question sur le pilote
+    d'hélicoptère pour chacun des
+    deux déplacements, $\vu$ et $\vv$, calculer les quantités suivantes:
+
+    \begin{enumerate}
+      \item $\norm{\vv} + \norm{\vu}$
+      \item $\norm{\vv + \vu}$
+    \end{enumerate}
+  }
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Mutliplication par un scalaire}
+  Deux forces agissent sur un objet:
+  \begin{align*}
+    \vec{F}_1 &= (3 \xhat - 7 \yhat) N \\
+    \vec{F}_2 &= (- \xhat + 5 \yhat) N
+  \end{align*}
+  Pour une raison quelconque, la deuxième force est soudainement quadruplée et
+  son orientation est inversée.  Calculer la force totale qui agit maintenant
+  sur l'objet, c'est-à-dire, calculer
+  \[
+    \vec{F}_1 - 4\vec{F}_2
+  \]
+\end{frame}
+
+\end{document}
+

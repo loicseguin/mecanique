@@ -1,0 +1,90 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{siunitx}
+\usepackage{tikz}
+
+\sisetup{locale=FR, per-mode=symbol}
+
+\begin{document}
+
+\begin{frame}
+  \frametitle{Exercice sur les coordonnées polaires}
+  Supposons que la position d'un objet est donnée par les coordonnées
+  polaires $(r, \theta) = (\SI{3.00}{\meter}; \SI{230}{\degree})$.  Déterminer les
+  coordonnées cartésiennes de cet objet.
+
+  \uncover<2>{
+    Il suffit d'appliquer les définitions du sinus et du cosinus.
+    \begin{align*}
+      x &= r\cos\theta \\
+        &= \SI{3.00}{\meter} \cos \SI{230}{\degree} \\
+        &= \SI{-1.93}{\meter}
+    \end{align*}
+    \begin{align*}
+      y &= r\sin\theta \\
+        &= \SI{3.00}{\meter} \sin \SI{230}{\degree} \\
+        &= \SI{-2.30}{\meter}
+    \end{align*}
+    Le point en question est donc décrit par les coordonnées cartésiennes
+    $(x, y) = (\SI{-1.93}{\meter}; \SI{-2.30}{\meter})$.
+  }
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Exercice sur la conversion d'unités}
+
+  Le taux auquel l'alcool est éliminé du sang est en moyenne
+  \SI{15.0}{\milli\gram\per\deci\liter\per\hour}.  Exprimer ce taux en unités
+  SI en utilisant la notation scientifique.
+
+  \uncover<2>{
+    \begin{align*}
+      \SI{15.0}{\milli\gram\per\deci\liter\per\hour} &=
+        \SI{15.0}{\milli\gram\per\deci\liter\per\hour} \times
+        \frac{\SI{1}{\kilogram}}{\SI{1e6}{\milli\gram}} \times
+        \frac{\SI{10}{\deci\liter}}{\SI{1}{\liter}} \times
+        \frac{\SI{1}{\hour}}{\SI{3600}{\second}} \\
+      &= 
+        \frac{15,0}{\num{3.60e8}}
+        \frac{\si{\kilogram}}{\si{\liter\second}} \\
+      &= \num{4.16667e-8} \frac{\si{\kilogram}}{\si{\liter\second}} \times
+        \frac{\SI{1}{\liter}}{\SI{1}{\deci\meter\cubed}} \\
+      &= \num{4.16667e-8} \frac{\si{\kilogram}}{\si{\second}} \times
+        \left(\frac{1}{\SI{1}{\deci\meter}} \times
+          \frac{\SI{10}{\deci\meter}}{\SI{1}{\meter}}\right)^3 \\
+      &= \SI{4.17e-5}{\kilogram\per\meter\cubed\per\second}
+    \end{align*}
+  }
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Exercice sur l'analyse dimensionnelle}
+
+  L'énergie $E$ d'un objet est reliée à sa masse $m$, sa vitesse $v$, et la
+  vitesse de la lumière $c$.  Les dimensions sont les suivantes
+  \begin{align*}
+    [E] &= ML^2/T^2 \\
+    [m] &= M \\
+    [v] &= L/T \\
+    [c] &= L/T
+  \end{align*}
+  On considère aussi une constante \textbf{sans dimension} $\gamma$.
+
+  Laquelle des relations suivantes est un candidat raisonnable pour la relation
+  entre l'énergie, la masse et la vitesse d'un objet?
+
+  \begin{enumerate}
+    \item $E = \gamma mv + mc^2$
+    \item $E = \frac{1}{2} m \left(\frac{v}{c}\right)^2$
+    \item $E^2 = (\gamma mv)^2c^2 + (mc^2)^2$
+    \item $E^2 = \frac{1}{2} m^2v^2 + \gamma^2m^2c^2$
+    \item $E^2 = \gamma m v^4 + mc^4$
+  \end{enumerate}
+\end{frame}
+
+\end{document}
