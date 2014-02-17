@@ -9,9 +9,10 @@
 \usepackage{xcolor}
 \usepackage{caption}
 \usepackage{booktabs}
+\usepackage{mathtools}
 
 \tikzset{>=latex}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,decorations.pathreplacing}
 \sisetup{locale=FR, per-mode=symbol}
 
 \newcommand{\abs}[1]{\left| #1 \right|}
@@ -23,8 +24,8 @@
 \newcommand{\real}{\mathbb{R}}
 \newcommand{\der}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 \newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\dif}{d}
-\newcommand{\ddif}{\,d}
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\ddif}{\,\mathrm{d}}
 \newcommand{\grad}{\vec{\nabla}}
 \newcommand{\exemple}[1]{\begin{fullwidth}#1\end{fullwidth}}
 \newcommand{\norm}[1]{\lVert #1 \rVert}

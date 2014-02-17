@@ -1,0 +1,231 @@
+\documentclass{beamer}
+
+\input{../common}
+
+\begin{document}
+
+\begin{frame}
+  \frametitle{Vitesse et accélération}
+
+  Les trois points suivants indiquent la position d'une voiture à trois moments
+  alors qu'elle prend une bretelle de sortie sur l'autoroute.
+  \begin{align*}
+    A: & \quad \vec{r}_A = (30\xhat + 20\yhat) \si{\meter} & t_A = \SI{0}{\second} \\
+    B: & \quad \vec{r}_B = (40\xhat + 60\yhat) \si{\meter} & t_B = \SI{2}{\second} \\
+    C: & \quad \vec{r}_C = (100\xhat + 90\yhat) \si{\meter} & t_C = \SI{6}{\second} \\
+  \end{align*}
+  \vspace{-1cm}
+  \begin{columns}
+    \column{0.5\textwidth}
+    Déterminer la vitesse moyenne entre $A$ et $B$, la vitesse moyenne entre $B$
+    et $C$, et l'accélération moyenne entre $A$ et $C$.
+    \column{0.5\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[scale=0.6]
+        \fill[black, opacity=0.4] (-1.3, -1.3) rectangle (1.3, 7);
+        \draw[dashed, yellow, ultra thick] (0, -1.3) -- (0, 7);
+        \fill[black, opacity=0.4] (1.3, -1.3) .. controls (1.3, 0) and (3, 3) .. (5, 4) --
+          (5, 5.55) .. controls (3, 5) and (1.3, 2.5) .. (1.3, 2) -- cycle;
+        \draw[white, dashed, ultra thick] (1.1, -1.3) -- (1.1, 2);
+        \draw[white, ultra thick] (1.1, 2) -- (1.1, 7);
+        \draw[white, ultra thick] (-1.1, -1.3) -- (-1.1, 7);
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at (1.5, 1);
+        \coordinate (B) at (2, 3);
+        \coordinate (C) at (5, 4.5);
+        \draw[->] (0, 0) -- (6, 0) node[below] {$x$};
+        \draw[->] (0, 0) -- (0, 6) node[left] {$y$};
+        \draw[fill=black] (A) circle (2pt);
+        \draw[fill=black] (B) circle (2pt);
+        \draw[fill=black] (C) circle (2pt);
+        \node[below] at (A) {$A$};
+        \node[anchor=south east] at (B) {$B$};
+        \node[above] at (C) {$C$};
+        \only<2>{
+          \draw[very thick, ->] (A) --
+            node[left] {$\vec{v}_{AB}$} ($0.2*(A) + 0.8*(B)$);
+          \draw[very thick, ->] (B) --
+            node[above] {$\vec{v}_{BC}$} ($0.5*(B) + 0.5*(C)$);
+          \draw[very thick, ->, red] (3, 3) --
+            node[right] {$\vec{a}_{AC}$} ++(1.6667, -2.08333);
+        }
+      \end{tikzpicture}
+    \end{center}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Accélération ou décélération?}
+  Considérons quatre objets dont la composante en $x$ de la vitesse est donnée
+  dans le tableau ci-dessous.
+
+  \vspace{0.2cm}
+  \begin{center}
+    \begin{tabular}{SSSSS}
+      \toprule
+      $t$ & $v_{1, x}$ & $v_{2, x}$  &  $v_{3, x}$  &  $v_{4, x}$  \\
+      \si{s} & \si{m/s} & \si{m/s} & \si{m/s}& \si{m/s} \\
+      \midrule
+      1  &   5  &   -5   &  10  &   -10  \\
+      2  &  10  &  -10   &  5   &    -5  \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \vspace{0.2cm}
+
+  Pour chacun de ces objets, calculer son accélération moyenne et déterminer si
+  l'objet accélère ou décélère.
+
+  \uncover<2>{
+    \begin{center}
+      \begin{tabular}{SSSS}
+        \toprule
+        $a_{1, x}$ & $a_{2, x}$  &  $a_{3, x}$  &  $a_{4, x}$  \\
+        \si{m/s^2} & \si{m/s^2} & \si{m/s^2}& \si{m/s^2} \\
+        \midrule
+         5  &   -5   &  -5  &   5  \\
+         {accélère}  &  {accélère}  &  {décélère}  & {décélère} \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+  }
+\end{frame}
+
+
+\begin{frame}[<+->]
+  \frametitle{Exemple d'analyse de mouvement I}
+
+  Considérons le mouvement illustré à la figure suivante.
+
+  \begin{center}
+  \begin{tikzpicture}[scale=0.8]
+    \draw[->] (0, 0) -- (8, 0) node[right] {$t$};
+    \draw[->] (0, 0) -- (0, 4) node[left] {$x$};
+    \draw[thick] plot[domain=0:5.5, samples=100] (\x, {2 + 1.3*cos(1.5*\x r)+sin(\x r)})
+          to[rounded corners] ++(1, 0) -- ++(1, 3);
+    \draw[dashed, blue] (0.35, 0) node[below] {$t_1$} -- (0.35, 3.4);
+    \draw[dashed, blue] (1.2, 0)  node[below] {$t_2$} -- (1.2, 2.6);
+    \draw[dashed, blue] (2.3, 0)  node[below] {$t_3$} -- (2.3, 1.5);
+    \draw[dashed, blue] (3, 0)    node[below] {$t_4$} -- (3, 1.9);
+    \draw[dashed, blue] (4, 0)    node[below] {$t_5$} -- (4, 2.4);
+    \draw[dashed, blue] (5.5, 0)  node[below] {$t_6$} -- (5.5, 0.8);
+    \draw[dashed, blue] (6.5, 0)  node[below] {$t_7$} -- (6.5, 0.8);
+    \draw[dashed, blue] (7.5, 0)  node[below] {$t_8$} -- (7.5, 3.8);
+  \end{tikzpicture}
+  \end{center}
+
+  Déterminer les intervalles sur lesquels la vitesse est positive, négative ou
+  nulle.
+
+  Déterminer les intervalles sur lesquels l'accélération est positive, négative
+  ou nulle.
+
+\end{frame}
+
+
+\begin{frame}[<+->]
+  \frametitle{Exemple d'analyse de mouvement II}
+
+  Considérons le mouvement illustré à la figure suivante.
+
+  \begin{center}
+  \begin{tikzpicture}[scale=0.7]
+    \draw[->] (0, 0) -- (8, 0) node[right] {$t (\si{\second})$};
+    \draw[->] (0, 0) -- (0, 4) node[left] {$x (\si{m})$};
+    \coordinate (O) at (0, 0);
+    \coordinate (A) at (1, 3);
+    \coordinate (B) at (3, 1);
+    \coordinate (C) at (4, 1);
+    \coordinate (D) at (5, 3);
+    \draw[thick] (O |- A) node[left] {$3$} -- (A) -- (B) -- (C) -- (D) -- ++(2, 0);
+    \draw[dashed, blue] (O -| A)  node[below, black] {\num{1}} -- (A);
+    \draw[dashed, blue] (O -| B)  node[below, black] {\num{3}} -- (B);
+    \draw[dashed, blue] (O -| C)  node[below, black] {\num{4}} -- (C);
+    \draw[dashed, blue] (O -| D)  node[below, black] {\num{5}} -- (D);
+    \draw[dashed, blue] (O |- B)  node[left, black]  {\num{1}} -- (B);
+    \foreach \x in {0,1,...,7} {
+      \draw (\x, 0) -- (\x, -0.1);
+    }
+    \foreach \y in {0,1,...,3} {
+      \draw (0, \y) -- (-0.1, \y);
+    }
+  \end{tikzpicture}
+  \end{center}
+
+  Calculer les quantités suivantes:
+  \begin{tabular}{ll}
+    la vitesse moyenne entre \SI{1,2}{\second} et \SI{2}{\second}.
+    & \only<2>{ \alert{$v_{\mathrm{moy},x} = \SI{-1.00}{\meter\per\second}$} } \\
+    
+    la vitesse instantanée à \SI{4.7}{\second}.
+    & \only<2>{ \alert{$v_x = \SI{2.00}{\meter\per\second}$} } \\
+
+    la distance parcourue entre \SI{0}{\second} et \SI{6}{\second}.
+    & \only<2>{ \alert{$d = \SI{4.00}{\meter}$} } \\
+
+    la vitesse scalaire moyenne entre \SI{0}{\second} et \SI{6}{\second}.
+    & \only<2>{ \alert{$v_s = \SI{0.667}{\meter\per\second}$} } \\
+
+    le déplacement entre \SI{0}{\second} et \SI{4.5}{\second}.
+    & \only<2>{ \alert{$\Delta x = \SI{-1.00}{\meter}$} } \\
+
+    l'accélération moyenne entre \SI{2.5}{\second} et \SI{3.5}{\second}.
+    & \only<2>{ \alert{$a_{\mathrm{moy}, x} = \SI{1.00}{\meter\per\second\squared}$} } \\
+  \end{tabular}
+\end{frame}
+
+
+\begin{frame}[<+->]
+  \frametitle{Exemple d'analyse de mouvement III}
+  Considérons le mouvement illustré à la figure suivante.
+
+  \begin{center}
+  \begin{tikzpicture}[scale=0.6]
+    \draw[->] (0, 0) -- (8, 0) node[right] {$t (\si{\second})$};
+    \draw[->] (0, -2) -- (0, 4) node[left] {$v_x (\si{m\per\second})$};
+    \coordinate (O) at (0, 0);
+    \coordinate (A) at (1, 3);
+    \coordinate (B) at (3, -1);
+    \coordinate (C) at (4, -1);
+    \coordinate (D) at (5, 3);
+    \draw[thick] (O |- A) node[left] {$3$} -- (A) -- (B) -- (C) -- (D) -- ++(2, 0);
+    \draw[dashed, blue] (O -| A)  node[below, black] {\num{1}} -- (A);
+    \draw[dashed, blue] (O -| B)  node[above, black] {\num{3}} -- (B);
+    \draw[dashed, blue] (O -| C)  node[above, black] {\num{4}} -- (C);
+    \draw[dashed, blue] (O -| D)  node[below, black] {\num{5}} -- (D);
+    \draw[dashed, blue] (O |- B)  node[left, black]  {\num{-1}} -- (B);
+    \foreach \x in {0,1,...,7} {
+      \draw (\x, 0) -- (\x, -0.1);
+    }
+    \foreach \y in {-2,-1,...,3} {
+      \draw (0, \y) -- (-0.1, \y);
+    }
+  \end{tikzpicture}
+  \end{center}
+
+  Calculer les quantités suivantes:
+
+  \begin{tabular}{ll}
+    la vitesse instantanée à \SI{2}{\second}.
+    & \only<2>{ \alert{$v_{x} = \SI{1.00}{\meter\per\second}$}} \\
+    
+    l'accélération moyenne entre \SI{3}{\second} et \SI{6}{\second}.
+    & \only<2>{ \alert{$a_{\mathrm{moy},x} =
+        \SI{1.33}{\meter\per\second\squared}$}} \\
+
+    l'accélération instantanée à \SI{3.5}{\second}.
+    & \only<2>{ \alert{$a_x = \SI{0.00}{\meter\per\second\squared}$}} \\
+
+    le déplacement entre \SI{3}{\second} et \SI{4}{\second}.
+    & \only<2>{ \alert{$\Delta x = \SI{-1.00}{\meter}$}} \\
+
+    les temps auxquels la direction change.
+    & \only<2>{ \alert{$\SI{2.50}{\second}$ et \SI{4.25}{\second}}} \\
+
+    les temps auxquels l'objet est immobile.
+    & \only<2>{ \alert{$\SI{2.50}{\second}$ et \SI{4.25}{\second}}} \\
+  \end{tabular}
+\end{frame}
+
+\end{document}

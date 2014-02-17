@@ -1,0 +1,194 @@
+\documentclass{tufte-handout}
+
+\input{../common}
+
+\title{Benson, Chapitre 4, Exercice E5}
+\author{}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+Un enfant part de l'origine vers l'est sur une trajectoire circulaire avec une
+vitesse de module constant égal à $v = \SI{1}{\meter\per\second}$.  Le
+cercle a une circonférence de $C = \SI{8}{m}$.
+
+\begin{enumerate}[a)]
+  \item On cherche le déplacement $\Delta \vec{r}$ entre $t_0 = \SI{0}{s}$ et
+    $t_1 = \SI{1}{s}$.
+
+    On sait que le module de la vitesse est constant, donc dans un intervalle
+    de temps $\Delta t = t_1 - t_0 = \SI{1}{s}$, la distance parcourue sera
+    $d = v\Delta t = \SI{1}{m}$.
+
+    La fraction de la circonférence du cercle parcourue dans cet intervalle de
+    temps est donc $f = d/C = 1/8$.  L'angle entre le rayon qui passe par le
+    centre du cercle et l'origine et le rayon qui passe par le centre du cercle
+    et la position finale est donc $\theta = f \times \SI{360}{\degree} =
+    \SI{45}{\degree}$.
+    \begin{marginfigure}
+      \begin{tikzpicture}[scale=1]
+        \draw[->] (-3, 0) -- (3, 0) node[below] {$x$};
+        \draw[->] (0, -5) -- (0, 1) node[left] {$y$};
+        \coordinate (O) at (0, 0);
+        \coordinate (rC) at (0, -2);
+        \coordinate (r1) at ($(rC) + (45:2)$);
+        \draw (rC) circle (2);
+        \draw[very thick, red, ->] (O) -- node[left] {$\vec{b}$} (rC);
+        \draw[very thick, red, ->] (rC) -- node[anchor=north west] {$\vec{c}$} (r1);
+        \draw (0, -1.6) arc (90:45:0.4);
+        \node at (0.2, -1.4) {$\theta$};
+        \draw[very thick, blue, ->] (0, 0) --
+             node[anchor=north] {$\Delta \vec{r}$} (r1);
+      \end{tikzpicture}
+    \end{marginfigure}
+
+    Tel qu'illustré sur la figure ci-contre, on peut représenter le vecteur
+    déplacement comme la somme de deux vecteurs (en rouge):
+    \[
+      \Delta \vec{r} = \vec{b} + \vec{c}
+    \]
+    Les composantes des deux vecteurs rouges peuvent être déterminées
+    facilement en utilisant un peu de trigonométrie.  En posant que le rayon du
+    cercle est $R = C/(2\pi)$, on trouve:
+    \begin{align*}
+      b_x &= \SI{0}{\meter} \\
+      b_y &= -R \\
+      c_x &= R\sin\theta = R\sqrt{2}/2 \\
+      c_y &= R\cos\theta = R\sqrt{2}/2
+    \end{align*}
+    Ainsi,
+    \begin{align*}
+      \Delta \vec{r} &= (b_x + c_x) \xhat + (b_y + c_y) \yhat \\
+                     &= R\frac{\sqrt{2}}{2}\, \xhat + R\left(-1 +
+                       \frac{\sqrt{2}}{2}\right)\yhat \\
+    \end{align*}
+    \[
+      \boxed{
+        \Delta \vec{r} = \left(\num{0.900} \xhat - \num{0.373}\yhat\right)\si{\meter}
+      }
+    \]
+
+  \item On cherche la vitesse moyenne de $t_0 = \SI{0}{s}$ à $t_2 = \SI{3}{s}$.
+
+    Pour faire ce calcul, il faut d'abord déterminer le déplacement entre $t_0
+    = \SI{0}{s}$ à $t_2 = \SI{3}{s}$.  La position à $t_0$ est donnée par le
+    vecteur nul car l'enfant part de l'origine.  La figure ci-contre montre le
+    déplacement.
+
+    \begin{marginfigure}
+      \begin{tikzpicture}[scale=1]
+        \draw[->] (-3, 0) -- (3, 0) node[below] {$x$};
+        \draw[->] (0, -5) -- (0, 1) node[left] {$y$};
+        \coordinate (O) at (0, 0);
+        \coordinate (rC) at (0, -2);
+        \coordinate (r1) at ($(rC) + (-45:2)$);
+        \draw (rC) circle (2);
+        \draw[very thick, red, ->] (O) -- node[left] {$\vec{b}$} (rC);
+        \draw[very thick, red, ->] (rC) -- node[anchor=north east] {$\vec{n}$} (r1);
+        \draw (0, -1.6) arc (90:-45:0.4);
+        \node at (0.5, -1.9) {$\alpha$};
+        \draw[very thick, blue, ->] (0, 0) --
+             node[anchor=west] {$\Delta \vec{r}$} (r1);
+      \end{tikzpicture}
+    \end{marginfigure}
+
+    Puisque l'enfant tourne d'un angle de \SI{45}{\degree} chaque seconde,
+    l'angle $\alpha$ est un angle de \SI{135}{\degree} et l'angle entre le
+    vecteur $\vec{n}$ et l'axe des $x$ positifs est de \SI{-45}{\degree}.  Par
+    conséquent, les composantes du vecteur $\vec{n}$ sont:
+    \begin{align*}
+      n_x &= R\cos\SI{45}{\degree} = R\sqrt{2}/2 \\
+      n_y &= -R\sin\SI{45}{\degree} = -R\sqrt{2}/2 \\
+    \end{align*}
+    Le déplacement est donc
+    \begin{align*}
+      \Delta \vec{r} &= \vec{b} + \vec{n} \\
+                     &= -R\yhat + R\frac{\sqrt{2}}{2}\xhat
+                        -R\frac{\sqrt{2}}{2}\yhat \\
+                     &= R\frac{\sqrt{2}}{2}\xhat - R\left(1 +
+                       \frac{\sqrt{2}}{2}\right)\yhat
+    \end{align*}
+
+    On trouve la vitesse moyenne en divisant le déplacement par l'intervalle de
+    temps.
+    \begin{align*}
+      \vv_{\mathrm{moy}} &= \frac{\Delta \vec{r}}{\Delta t} \\
+                         &= \frac{R}{\SI{3}{s}}\frac{\sqrt{2}}{2}\xhat - 
+                            \frac{R}{\SI{3}{s}}\left(1 +
+                            \frac{\sqrt{2}}{2}\right)\yhat
+    \end{align*}
+    \[
+      \boxed{\vv_{\mathrm{moy}} = \left(\num{0.300} \xhat - \num{0.725} \yhat\right)
+      \si{\meter\per\second}}
+    \]
+
+  \item On cherche l'accélération moyenne entre $t_1 = \SI{1}{s}$ et $t_2 =
+    \SI{3}{s}$.
+
+    La figure ci-contre illustre les vitesses instantanées à $t_1$ et $t_2$.
+    On sait déjà que la position du chariot tourne de \SI{45}{\degree} chaque
+    seconde.  Par conséquent, l'angle $\beta$ dans la figure est égal à
+    \SI{45}{\degree}.  Les angles sont déterminés en utilisant le fait qu'un
+    rayon de cercle croise toujours une droite tangente à un angle de
+    \SI{90}{\degree}.
+    \begin{marginfigure}
+    \begin{tikzpicture}[scale=1]
+        \draw[->] (-3, 0) -- (3, 0) node[below] {$x$};
+        \draw[->] (0, -5) -- (0, 1) node[left] {$y$};
+        \coordinate (O) at (0, 0);
+        \coordinate (rC) at (0, -2);
+        \coordinate (r1) at ($(rC) + (-45:2)$);
+        \coordinate (r0) at ($(rC) + (45:2)$);
+        \draw (rC) circle (2);
+        \draw[very thick, red, ->] (r0) -- node[anchor=south west]
+        {$\vec{v}_1$} ++(-45:1.5);
+        \draw[very thick, red, ->] (r1) -- ++(-135:1.5) node[anchor=north west]
+          {$\vec{v}_2$} ;
+        \draw (rC) -- (r0);
+        \draw (rC) -- (r1);
+        \draw (0, -1.6) arc (90:45:0.4);
+        \draw (0, -2.3) arc (-90:-45:0.3);
+        \draw[fill=black, rotate=-45] (rC) rectangle ++(0.2, 0.2);
+        \node at (0.2, -1.4) {$\beta$};
+        \node at (0.16, -2.45) {$\beta$};
+        \draw[dashed] (r1) -- ++(-45:1);
+        \draw[dashed] (r1) -- ++(-90:1);
+        \draw ($(r1) + (-90:0.4)$) arc (-90:-45:0.4);
+        \draw ($(r1) + (-90:0.3)$) arc (-90:-135:0.3);
+        \node at ($(r1) + (-75:0.6)$) {$\beta$};
+        \node at ($(r1) + (-105:0.5)$) {$\beta$};
+        \draw[dashed] (r0) -- ++(-90:1);
+        \draw ($(r0) + (-90:0.4)$) arc (-90:-45:0.4);
+        \draw ($(r0) + (-90:0.3)$) arc (-90:-135:0.3);
+        \node at ($(r0) + (-75:0.6)$) {$\beta$};
+        \node at ($(r0) + (-105:0.5)$) {$\beta$};
+    \end{tikzpicture}
+    \end{marginfigure}
+
+    Pour trouver l'accélération moyenne, il faut calculer la variation de
+    vitesse.  Puisque $\vv_2$ est la réflexion de $\vv_1$ par rapport à une
+    droite verticale, les composantes en $y$ des deux vecteurs sont égales et
+    la différence des deux donne \num{0}.  De plus, les composantes en $x$ des
+    deux vitesses sont aussi égales en grandeur mais de signes opposés.  Par
+    conséquent, $v_{2x} - v_{1x} = 2v_{2x}$.  Un peu de trigonométrie permet de
+    trouver $v_{2x}$:
+    \[
+      v_{2x} = -v_2 \sin \beta = -v_2 \sqrt{2}/2
+    \]
+    L'accélération moyenne est donc
+    \begin{align*}
+      \vec{a}_{\mathrm{moy}} &= \frac{\vv_2 - \vv_1}{\Delta t} \\
+                             &= \frac{-2v_2\sqrt{2}/2}{t_2 - t_1}\, \xhat \\
+                             &=
+                             \frac{-\SI{2}{\meter\per\second}\sqrt{2}/2}{\SI{2}{\second}}\, \xhat \\
+    \end{align*}
+    \[
+      \boxed{\vec{a}_{\mathrm{moy}} = \num{-0.707}\,\xhat\, \si{\meter\per\second\squared}}
+    \]
+
+
+\end{enumerate}
+
+\end{document}
