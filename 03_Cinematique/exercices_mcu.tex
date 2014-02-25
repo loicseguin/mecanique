@@ -1,0 +1,62 @@
+\documentclass{beamer}
+
+\input{../common}
+
+\begin{document}
+
+\begin{frame}
+  \frametitle{Voiture dans un virage I}
+
+  Une voiture prend une bretelle de sortie sur l'autoroute à une vitesse de
+  module \SI{80}{\kilo\meter\per\hour}.  Si le rayon de courbure de la bretelle
+  est de \SI{50}{\meter}, calculer le module de l'accélération centripète sur
+  la voiture.
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Voiture dans un virage II}
+
+On considère une voiture qui entre sur l'autoroute par une bretelle circulaire
+de rayon égal à \SI{50}{\meter}.  Entre \SI{0}{\second} et \SI{3}{\second} la
+voiture passe de \SI{80}{\kilo\meter\per\hour} à \SI{100}{\kilo\meter\per\hour}.
+\begin{enumerate}
+  \item Dessiner qualitativement le vecteur vitesse à \SI{0}{\second} et à
+    \SI{3}{\second}.
+  \item Dessiner qualitativement l'accélération centripète, l'accélération
+    tangentielle et l'accélération.
+  \item Déterminer le module de l'accélération.
+\end{enumerate}
+
+\uncover<2->{
+\begin{center}
+  \begin{tikzpicture}
+    \fill[black!40] (0, 0) arc (180:0:2) -- (3.5, 0)
+          arc (0:180:1.5) -- (0, 0);
+    \draw[dashed, yellow] (0.25, 0) arc (180:0:1.75);
+    \fill[shift={(0.25, 0.5)}, rotate=-20] (0, 0) rectangle ++(0.2, 0.4);
+    \fill[shift={(3, 1.25)}, rotate=55] (0, 0) rectangle ++(0.2, 0.4);
+    \fill (2, 0) circle (2pt);
+    \uncover<3->{
+      \draw[very thick, blue, ->] (0.43, 0.7) -- ++(70:1) node[anchor=south east] {$\vec{v}_0$};
+      \draw[very thick, blue, ->] (3, 1.38) -- ++(-35:1.5) node[anchor=south west] {$\vec{v}_1$};
+    }
+    \uncover<4->{
+      \draw[very thick, red, ->] (1.4, 1.64) -- ++(20:0.5) node[anchor=south] {$\vec{a}_t$};
+      \draw[very thick, red, ->] (1.4, 1.64) -- ++(-70:1.5) node[anchor=east] {$\vec{a}_r$};
+      \coordinate (aa) at ($(1.4, 1.64) + (20:0.5) + (-70:1.5)$);
+      \draw[very thick, red, ->] (1.4, 1.64) -- (aa) node[anchor=north west] {$\vec{a}$};
+      \draw[densely dashed] ($(1.4, 1.64) + (20:0.5)$) -- (aa);
+      \draw[densely dashed] ($(1.4, 1.64) + (-70:1.5)$) -- (aa);
+    }
+  \end{tikzpicture}
+\end{center}
+}
+
+  
+\end{frame}
+
+\end{document}
+
+

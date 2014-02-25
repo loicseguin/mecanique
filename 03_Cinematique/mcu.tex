@@ -1,0 +1,254 @@
+\documentclass{tufte-handout}
+
+\input{../common}
+
+\title{Cinématique du mouvement circulaire uniforme}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{0.5cm}
+
+\section{Mouvement circulaire uniforme}
+
+Un \textbf{mouvement circulaire uniforme} est un mouvement en deux dimensions
+dont la trajectoire est un cercle et au cours duquel le module de la vitesse
+est constant.  Pour ce type de mouvement, il existe une relation simple (bien
+que sa démonstration ne le soit pas) entre le module de l'accélération, le
+module de la vitesse et le rayon de la trajectoire.
+
+\begin{marginfigure}
+  \begin{tikzpicture}[scale=1]
+    \draw (0, 0) circle (2);
+    \draw[very thick, ->] (0, 0) -- node[anchor=north west] {$\vec{r}_1$} (30:2);
+    \draw[very thick, ->] (0, 0) -- node[anchor=south east] {$\vec{r}_2$} (60:2);
+    \draw[very thick, ->] (30:2) -- node[right] {$\vec{v}_1$} ++(120:2);
+    \draw[very thick, ->] (60:2) -- node[above] {$\vec{v}_2$} ++(150:2);
+    \fill (30:2) circle (2pt);
+    \fill (60:2) circle (2pt);
+  \end{tikzpicture}
+\end{marginfigure}
+La figure ci-contre montre la position et la vitesse d'une particule en
+mouvement circulaire uniforme à deux moments distincts séparés par un
+intervalle de temps $\Delta t$.  L'origine du système de coordonnées est placée
+au centre du cercle.  La trajectoire a un rayon $R$ et le module de la vitesse
+est $v$.  Par conséquent,
+\[
+  r_1 = r_2 = R
+\]
+et
+\[
+  v_1 = v_2 = v.
+\]
+L'objectif est de déterminer l'\textbf{accélération instantannée} pour ce
+mouvement.  La première étape est de déterminer l'orientation de
+l'accélération, et la seconde, de déterminer son module.
+
+
+\subsection{Orientation de l'accélération d'un MCU}
+
+Le diagramme ci-contre représente les vitesses aux mêmes deux moments que dans
+la figure précédente.  Par contre, l'origine de ces deux vitesses est placée au
+point $A$ qui correspond à la position $\vec{r}_1$.
+\begin{marginfigure}
+  \begin{tikzpicture}[scale=1.2]
+    \clip (-0.5, -0.5) rectangle (5, 5);
+    \draw (0, 0) circle (3);
+    \draw (0, 0) -- (60:3);
+    \draw[very thick, ->] (30:3) -- ++(150:2) node[anchor=east] {$\vec{v}_2$};
+    \draw (0, 0) -- (30:3);
+    \draw[very thick, ->] (30:3) -- ++(120:2) node[above] {$\vec{v}_1$};
+    \draw[very thick, ->] ($(30:3) + (120:2)$) --
+                          node[anchor=south east] {$\Delta\vv$}
+                          ($(30:3) + (150:2)$);
+    \draw[dashed] (0, 0) -- (45:3.2);
+    \fill[shift={(60:2.45)}, rotate=-30] (0, 0) rectangle (0.15, 0.15);
+    \fill[shift={(30:2.85)}, rotate=30] (0, 0) rectangle (0.15, 0.15);
+    \draw[fill=green, opacity=0.5] (0, 0) -- (30:0.5) arc (30:45:0.5) -- cycle;
+    \filldraw[fill=green, opacity=0.5] (0, 0) -- (45:0.7) arc (45:60:0.7) -- cycle;
+    \filldraw[fill=red, opacity=0.5] (45:2.67) -- (45:2.45) arc (215:155:0.27) -- cycle;
+    \filldraw[fill=red, opacity=0.5] (45:2.7) -- (45:2.85) arc (35:-15:0.23) -- cycle;
+    \filldraw[fill=red, opacity=0.5] (45:3.1) -- (45:2.95) arc (-155:-55:0.12) -- cycle;
+    \node[below] at (0, 0) {$O$};
+    \node[right] at (30:3) {$A$};
+    \node[] at (45:3.5) {$B$};
+    \node[below] at (45:2.7) {$C$};
+    \node[left] at (60:2.5) {$D$};
+  \end{tikzpicture}
+\end{marginfigure}
+La droite en pointillées est la bissectrice de l'angle formé par les deux
+vecteurs position $\vec{r}_1$ et $\vec{r}_2$, et, par conséquent, les deux
+angles verts sont égaux.  Le triangle $ODC$ est rectangle parce que $\vv_2$ est
+perpendiculaire à $\vec{r}_2$.  L'angle rouge dans ce triangle est donc
+\[
+  \tikz{\filldraw[fill=red, opacity=0.5]
+          (0, 0) -- (0.4, 0) arc (0:60:0.4) -- cycle;} = 
+  \SI{90}{\degree} -
+  \tikz{\filldraw[fill=green, opacity=0.5]
+          (0, 0) -- (0.4, 0) arc (0:30:0.4) -- cycle;}.
+\]
+Puisque l'angle $\angle ACB$ est opposé par le sommet à l'angle $\angle OCD$,
+ces deux angles sont égaux.
+
+Le triangle $OAB$ est rectangle parce que $\vv_1$ est
+perpendiculaire à $\vec{r}_1$.  L'angle rouge dans ce triangle est donc aussi
+\[
+  \tikz{\filldraw[fill=red, opacity=0.5]
+          (0, 0) -- (0.4, 0) arc (0:60:0.4) -- cycle;} = 
+  \SI{90}{\degree} -
+  \tikz{\filldraw[fill=green, opacity=0.5]
+          (0, 0) -- (0.4, 0) arc (0:30:0.4) -- cycle;}.
+\]
+Tous les angles rouges dans la figure sont donc égaux.
+
+Le triangle $ABC$ est par conséquent isocèle.  De plus, il partage un angle
+avec le triangle formé par $\vv_1$, $\vv_2$ et $\Delta \vv$, qui est aussi
+isocèle.  Par conséquent, $\Delta \vv$ est parallèle avec la droite bissectrice
+$OB$.  Si l'angle $2\tikz{\filldraw[fill=green, opacity=0.5] (0, 0) -- (0.4, 0)
+  arc (0:30:0.4) -- cycle;}$ est petit (lire, tend vers zéro), l'accélération
+instantannée à mi-chemin entre les positions $\vr_1$ et $\vr_2$ est
+approximativement égale à
+\[
+  \vec{a} \approx \frac{\Delta \vv}{\Delta t} 
+\]
+L'accélération instantannée est donc parallèle avec la droite bissectrice $OB$.
+Autrement dit, elle pointe vers le centre du cercle.
+
+En résumé, \textbf{l'accélération dans un MCU pointe toujours vers le centre du
+cercle de la trajectoire}.  On l'appelle donc une \textbf{accélération
+centripète}.
+
+
+
+\subsection{Module de l'accélération d'un MCU}
+
+Maintenant que nous connaissons l'orientation du vecteur accélération, il ne reste
+qu'à trouver son module.  Pour cela, nous utiliserons la définition de
+l'accélération moyenne puis nous obtiendrons l'accélération instantannée en
+passant à la limite lorsque l'intervalle de temps $\Delta t$ tend vers zéro.
+
+La figure ci-contre montre encore une fois les vecteurs vitesse aux deux
+moments considérés.  En prolongeant le segment correspondant à $\vr_1$ et celui
+correspondant à $\vv_2$, on forme deux triangles indiqués en rouge et en bleu
+sur la figure.  Ces deux triangles sont rectangles puisque les vecteurs vitesse
+sont tangent au cercle et donc perpendiculaires aux vecteurs position.
+\begin{marginfigure}
+  \begin{tikzpicture}[scale=1.3]
+    \clip (-0.5, -0.5) rectangle (5, 5);
+    \draw (0, 0) circle (3);
+    \draw (0, 0) -- (60:3);
+    \draw[very thick, ->] (60:3) -- ++(150:2) node[above] {$\vec{v}_2$};
+    \draw[dashed] (60:3) -- ++(-30:1.76);
+    \draw (0, 0) -- (30:3);
+    \draw[very thick, ->] (30:3) -- ++(120:2) node[above] {$\vec{v}_1$};
+    \draw[dashed] (30:3) -- (30:3.46);
+    \draw[opacity=0.5, blue, line width=2pt] (0, 0) -- (60:3) -- (30:3.46) -- cycle;
+    \begin{scope}
+      \clip (30:3.46) -- (30:3) -- ++(120:0.8) -- cycle;
+      \draw[opacity=0.5, red, line width=4pt] (30:3.46) -- (30:3) -- ++(120:0.8) -- cycle;
+    \end{scope}
+    \filldraw[fill=green, opacity=0.5] (0, 0) -- (30:0.4) arc (30:60:0.4) -- cycle;
+    \filldraw[fill=green, opacity=0.5, shift={(-45:0.2)}] (45:3.1) -- (40:3.05) arc (-50:-30:0.4) -- cycle;
+  \end{tikzpicture}
+\end{marginfigure}
+Les deux triangles rectangles partagent un angle autre que l'angle de
+\SI{90}{\degree}, donc ils sont semblables et tous leurs angles sont égaux.  Si
+on appelle $\Delta \theta$ l'angle \tikz{\filldraw[fill=green, opacity=0.5] (0,
+  0) -- (30:0.4) arc (30:60:0.4) -- cycle;} entre $\vr_1$ et $\vr_2$, alors
+l'angle \tikz{\filldraw[fill=green, opacity=0.5] (0, 0) -- (30:0.4) arc
+  (30:60:0.4) -- cycle;} dans le triangle rouge est aussi égal à $\Delta
+\theta$.  L'angle entre les vecteurs $\vv_1$ et $\vv_2$ est opposé par le
+sommet à l'angle \tikz{\filldraw[fill=green, opacity=0.5] (0, 0) -- (30:0.4) arc
+  (30:60:0.4) -- cycle;} dans le triangle rouge et il est donc aussi égal à
+$\Delta \theta$.
+
+Par conséquent, l'angle entre les vecteurs $\vr_1$ et $\vr_2$ est le même que
+l'angle entre les vecteurs $\vv_1$ et $\vv_2$.
+
+Les vecteurs $\vv_1$ et $\vv_2$ ont le même module.  S'ils ont la même origine,
+ils forment donc deux rayons d'un cercle de rayon $v$, comme sur la figure
+ci-contre.  La longueur du vecteur $\Delta \vv$ est approximativement égale à
+la longueur de l'arc de cercle indiqué en rouge.  Cette approximation devient
+une égalité stricte si on prend la limite de $\Delta \theta$ qui tend vers
+zéro.
+\begin{marginfigure}
+  \begin{tikzpicture}[scale=1.3]
+    \clip (0.5, -0.5) rectangle (-3.5, 3.5);
+    \draw (0, 0) circle (3);
+    \draw[very thick, red] (120:3) arc (120:150:3);
+    \draw[very thick, ->] (0, 0) -- node[anchor=north east] {$\vec{v}_2$} (150:3);
+    \draw[very thick, ->] (0, 0) -- node[anchor=south west] {$\vec{v}_1$} (120:3);
+    \draw (120:0.8) arc (120:150:0.8);
+    \node at (135:1.2) {$\Delta \theta$};
+    \draw[very thick, ->] (120:3) -- node[anchor=north west] {$\Delta\vec{v}$} (150:3);
+    \node[red] at (135:3.15) {$s$};
+\end{tikzpicture}
+\end{marginfigure}
+La longueur d'un arc de cercle sous-tendu par un angle $\Delta \theta$ est
+égale au rayon du cercle multiplié par l'angle en radian:
+\[
+  {\color{red}s} = v\Delta \theta.
+\]
+Par conséquent, le module du vecteur changement de vitesse est
+approximativement
+\[
+  \Delta v \approx v\Delta\theta.
+\]
+Le module de l'accélération instantannée est approximativement égal au module
+de l'accélération moyenne donc
+\begin{align}
+  a &\approx \frac{\Delta v}{\Delta t} \nonumber\\
+  a &\approx \frac{v \Delta\theta}{\Delta t} \label{eqn:mcu_a} 
+\end{align}
+Il ne reste qu'à éliminer le $\Delta \theta / \Delta t$ de cette expression.
+Dans le cercle de la trajectoire, les vecteurs positions $\vr_1$ et $\vr_2$
+forment deux rayons.  Le déplacement $\Delta \vr$ a un module approximativement
+égal à la longueur de l'arc de cercle $s_r$
+\[
+  \Delta r \approx R \Delta \theta.
+\]
+\begin{marginfigure}
+  \begin{tikzpicture}[>=latex]
+    \clip (-0.5, -0.5) rectangle (3.5, 3.5);
+    \draw (0, 0) circle (3);
+    \draw[very thick, red] (30:3) arc (30:60:3);
+    \draw[very thick, ->] (0, 0) -- node[anchor=south east] {$\vec{r}_2$} (60:3);
+    \draw[very thick, ->] (0, 0) -- node[anchor=north west] {$\vec{r}_1$} (30:3);
+    \draw (30:0.8) arc (30:60:0.8);
+    \node at (45:1.2) {$\Delta \theta$};
+    \draw[very thick, ->] (30:3) -- node[anchor=north east] {$\Delta\vec{r}$} (60:3);
+    \node[red] at (45:3.25) {$s_r$};
+  \end{tikzpicture}
+\end{marginfigure}
+Par conséquent, le module de la vitesse instantannée, $v$, est
+approximativement égal à
+\[
+  v \approx \frac{R\Delta \theta}{\Delta t}.
+\]
+Autrement dit,
+\[
+  \frac{\Delta \theta}{\Delta t} = \frac{v}{R}.
+\]
+En remplaçant cette expression dans l'équation \ref{eqn:mcu_a}, nous obtenons
+le module de l'accélération
+\[
+  a = \frac{v^2}{R} 
+\]
+
+Il est important de noter que ce résultat est \textbf{exact}, ce n'est pas une
+appoximation.  La démonstration que nous en avons faite utilise plusieurs
+approximations, mais il est possible de démontrer que ces approximations
+deviennent des résultats exacts lorsque nous prenons la limite de $\Delta t$
+qui tend vers zéro.
+
+
+\subsection{Résumé MCU}
+
+Dans un mouvement circulaire uniforme, la vitesse a un module constant $v$ et
+la trajectoire est un cercle de rayon $R$.  L'accélération est centripète,
+c'est-à-dire qu'elle pointe toujours vers le centre du cercle.  Enfin, le
+module de l'accélération a la valeur constante $a = v^2/R$.
+
+\end{document}
+
