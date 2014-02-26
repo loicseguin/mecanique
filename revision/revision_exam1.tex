@@ -1,0 +1,268 @@
+\documentclass{beamer}
+
+\input{../common}
+
+\newcommand{\teddybear}{
+  % Right arm
+  \fill[color=brown, shift={(1, 0.4)}, rotate=-60] (0, 0) ellipse (0.2 and 0.5);
+  % Left arm
+  \fill[color=brown, shift={(-1, 0.4)}, rotate=60] (0, 0) ellipse (0.2 and 0.5);
+  % Right leg
+  \fill[color=brown, shift={(0.6, -1.2)}, rotate=30] (0, 0) ellipse (0.2 and 0.5);
+  % Left leg
+  \fill[color=brown, shift={(-0.6, -1.2)}, rotate=-30] (0, 0) ellipse (0.2 and 0.5);
+  % Body
+  \fill[color=brown] (0, 0) ellipse (0.8 and 1);
+  % Belly
+  \fill[color=brown!50] (0, -0.2) ellipse (0.4 and 0.5);
+  % Left outer ear
+  \fill[color=brown, draw=brown!80!black] (-0.5, 1.9) circle (0.3);
+  % Left inner ear
+  \fill[color=brown!50] (-0.42, 1.8) circle (0.15);
+  % Right outer ear
+  \fill[color=brown, draw=brown!80!black] (0.5, 1.9) circle (0.3);
+  % Right inner ear
+  \fill[color=brown!50] (0.42, 1.8) circle (0.15);
+  % Head
+  \fill[color=brown, draw=brown!80!black] (0, 1.3) circle (0.6);
+  % Eyes
+  \fill[color=white] (-0.2, 1.4) circle (0.2);
+  \fill[color=white] (0.2, 1.4) circle (0.2);
+  \fill[color=black] (-0.2, 1.4) circle (0.1);
+  \fill[color=black] (0.2, 1.4) circle (0.1);
+}
+
+\title{Questions de révision pour l'examen 1}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}
+  \frametitle{Analyse dimensionnelle}
+
+  Lesquelles des équations suivantes sont homogènes.
+
+  $[F] = ML/T^2$, $[a] = L/T^2$, $[m] = M$, $[v] = L/T$, $[t] = T$, $[x] = L$
+
+  \begin{enumerate}
+    \item \alert<2>{$\displaystyle{\frac{F}{m} = \frac{v}{t} }$}
+    \item $\displaystyle{v - at = 4v + \frac{a}{x} t^2  }$
+    \item $\displaystyle{x = vt + av}$
+    \item \alert<2>{$\displaystyle{Fx = mv^2}$}
+    \item $\displaystyle{tata = maFt}$
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Vecteurs et scalaires}
+
+  Quelles quantités parmis les suivantes sont des vecteurs?
+
+  \begin{enumerate}
+    \item \alert<2>{la vitesse}
+    \item la distance parcourue
+    \item la composante $y$ de l'accélération
+    \item la norme du déplacement
+    \item \alert<2>{l'accélération centripète}
+    \item l'orientation de la position
+  \end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Positif ou négatif?}
+
+  Pour chacune des quantités suivantes déterminer si elle peut être négative,
+  si elle est toujours plus grande ou égale à zéro, ou si on ne peut pas
+  déterminer si elle est positive ou négative.
+
+  \begin{enumerate}
+    \item la vitesse \only<2>{\alert{vecteur, ni $+$ ni $-$}}
+    \item la distance parcourue \only<2>{\alert{$\geq 0$}}
+    \item la composante $y$ de l'accélération \only<2>{\alert{$<$, $=$ ou $>$}}
+    \item la norme du déplacement \only<2>{\alert{$\geq 0$}}
+    \item l'accélération centripète \only<2>{\alert{vecteur, ni + ni -}}
+    \item la composante $x$ de la vitesse \only<2>{\alert{ $<$, $=$ ou $>$}}
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Déplacement et distance parcourue}
+
+  Un hibou vole d'un endroit à un autre. La distance parcourue par le hibou est
+  \begin{enumerate}
+    \item \alert<2>{plus grande ou égale au}
+    \item toujours plus grande que le
+    \item égale au
+    \item plus petite ou égale au
+    \item toujours plus petite que le
+    \item soit plus petite ou plus grande que le
+  \end{enumerate}
+  module du déplacement.
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Graphique position-temps I}
+
+  La figure ci-dessous montre la position d'un ourson à cinq moments
+  différents.
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[->] (0, 0) -- (9, 0) node[below] {$x$}; 
+      \begin{scope}[shift={(0.5,   0.5)}, scale=0.2]\teddybear\end{scope}
+      \begin{scope}[shift={(1.5, 0.5)},   scale=0.2]\teddybear\end{scope}
+      \begin{scope}[shift={(3,   0.5)},   scale=0.2]\teddybear\end{scope}
+      \begin{scope}[shift={(5,   0.5)},   scale=0.2]\teddybear\end{scope}
+      \begin{scope}[shift={(8,   0.5)},   scale=0.2]\teddybear\end{scope}
+      \node at (0.3, 1.3) {$t = \SI{4}{s}$};
+      \node at (1.6, 1.3) {$t = \SI{3}{s}$};
+      \node at (3  , 1.3) {$t = \SI{2}{s}$};
+      \node at (5  , 1.3) {$t = \SI{1}{s}$};
+      \node at (8  , 1.3) {$t = \SI{0}{s}$};
+    \end{tikzpicture}
+  \end{center}
+  Lequel des graphiques suivants est un graphique de la position en fonction du
+  temps plausible pour le mouvement de l'ourson.
+
+  \begin{tikzpicture}[scale=0.6]
+    \begin{scope}[shift={(0, 0)}]
+      \draw[->] (0, 0) -- (3, 0) node[below] {$t$};
+      \draw[->] (0, 0) -- (0, 3) node[left] {$x$};
+      \draw (0.2, 2.5) parabola (2.5, 0.2);
+      \node at (-0.5, 0.5) {A};
+    \end{scope}
+    \begin{scope}[shift={(4.5, 0)}]
+      \draw[->] (0, 0) -- (3, 0) node[below] {$t$};
+      \draw[->] (0, 0) -- (0, 3) node[left] {$x$};
+      \draw (2.5, 2.5) parabola (0.2, 0.2);
+      \node at (-0.5, 0.5) {B};
+    \end{scope}
+    \begin{scope}[shift={(9, 0)}]
+      \draw[->] (0, 0) -- (3, 0) node[below] {$t$};
+      \draw[->] (0, 0) -- (0, 3) node[left] {$x$};
+      \draw (0.2, 0.2) parabola (2.5, 2.5);
+      \node at (-0.5, 0.5) {C};
+    \end{scope}
+    \alert<2>{
+    \begin{scope}[shift={(13.5, 0)}]
+      \draw[->] (0, 0) -- (3, 0) node[below] {$t$};
+      \draw[->] (0, 0) -- (0, 3) node[left] {$x$};
+      \draw (2.5, 0.2) parabola (0.2, 2.5);
+      \node at (-0.5, 0.5) {D};
+    \end{scope}
+    }
+  \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Graphique position-temps II}
+
+  Le graphique suivant montre la position en fonction du temps de deux trains
+  qui voyagent sur des voies parallèles.  Pour les temps plus grands que $t =
+  \SI{0}{s}$, lequel des énoncés suivants est vrai.
+
+  \begin{center}
+  \begin{tikzpicture}[scale=0.7]
+    \draw[->] (0, 0) -- (3, 0) node[below] {$t$};
+    \draw[->] (0, 0) -- (0, 3) node[left] {$x$};
+    \draw (0, 0) to[bend left] (2.9, 2.6) node[right] {$B$};
+    \draw (0, 0) -- (2.9, 2.9) node[anchor=south west] {$A$};
+    \draw[dashed] (2.5, 2.5) -- (2.5, 0) node[below] {$t_B$};
+    \alert<2>{
+      \draw[shift={(0.7, 1.4)}] (-0.5, -0.5) -- (1, 1);
+      \draw[dashed] (1, 0) -- (1, 1.6);
+    }
+  \end{tikzpicture}
+  \end{center}
+
+  \begin{enumerate}
+    \item Au temps $t_B$, le module de la vitesse des deux trains est le même.
+    \item Les deux trains vont de plus en plus vite.
+    \item \alert<2>{Le module de la vitesse des deux trains est le même à un
+        instant entre \SI{0}{s} et $t_B$.}
+    \item Quelque part sur le graphique, les deux trains ont la même
+      accélération.
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Chute libre I}
+
+  On lance une balle verticalement vers le haut.  Au point le plus haut de sa
+  trajectoire, lequel des énoncés suivants est vrai.
+
+  \begin{enumerate}
+    \item les modules de la vitesse et de l'accélération sont nuls
+    \item le module de la vitesse est différent de zéro et celui de
+      l'accélération est nul
+    \item \alert<2>{le module de la vitesse est nul et celui de l'accélération
+        est différent de zéro}
+    \item les modules de la vitesse et de l'accélération sont tous les deux
+      différents de zéro
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Graphique vitesse-temps}
+
+  Le graphique ci-dessous illustre la composante $x$ de la vitesse en fonction
+  du temps pour un hibou qui vole en ligne droite.
+
+  \begin{center}
+  \begin{tikzpicture}[scale=1]
+    \draw[->] (0, 0) -- (3, 0) node[below] {$t$};
+    \draw[->] (0, 0) -- (0, 1.5) node[left] {$v_x$};
+    \draw (0.5, 0) -- (1, 1) -- (1.5, 0) -- (2, 1) -- (2.5, 0);
+    \draw[dashed] (0, 1) node[left] {$v_{max}$} -- (2, 1);
+    \node[below] at (0.5, 0) {$t_0$};
+    \node[below] at (1.5, 0) {$t_1$};
+    \node[below] at (2.5, 0) {$t_2$};
+  \end{tikzpicture}
+  \end{center}
+
+  Laquelle des expressions suivantes donne le déplacement entre $t_0$ et $t_2$?
+
+  \begin{enumerate}
+    \item $\displaystyle{\Delta x = (t_1 - t_0)v_{max} + (t_2 - t_0)v_{max} }$
+    \item $\displaystyle{\Delta x = (t_2 - t_0)v_{max} }$
+    \item \alert<2>{$\displaystyle{\Delta x = \frac{(t_2 - t_0)v_{max}}{2} }$}
+    \item $\displaystyle{\Delta x = \frac{1}{2} (t_0 + t_1 + t_2) v_{max} }$
+  \end{enumerate}
+
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Projectile}
+  
+  Un joueur de baseball frappe une balle et lui donne une vitesse initiale de
+  module \SI{50}{\meter\per\second} faisant un angle de \SI{30}{\degree} avec
+  l'horizontale.  Combien de temp est nécessaire pour que la balle atteigne
+  son point le plus haut? (Supposer que $g = \SI{10}{\meter\per\second\squared}$.)
+
+  \begin{enumerate}
+    \item \SI{2.0}{s}
+    \item \alert<2>{\SI{2.5}{s}}
+    \item \SI{3.0}{s}
+    \item \SI{4.0}{s}
+    \item \SI{5.0}{s}
+    \item \SI{6.0}{s}
+  \end{enumerate}
+
+\end{frame}
+
+
+\end{document}
+
+
