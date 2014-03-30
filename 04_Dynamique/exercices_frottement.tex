@@ -1,0 +1,256 @@
+\documentclass{tufte-handout}
+
+\input{../common}
+
+\title{Exercice sur le frottement}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{0.5cm}
+
+On considère deux blocs de masses $m_1 = \SI{5}{\kilogram}$ et $m_2 =
+\SI{8}{\kilogram}$ reliés entre eux par une corde de masse négligeable.  La
+corde passe sur une poulie de masse négligeable et sans frottement.  Les blocs
+reposent sur deux plans inclinés d'angles $\theta_1 = \SI{20}{\degree}$ et
+$\theta_2 = \SI{35}{\degree}$.
+
+À l'interface entre la face inférieure des blocs et le plan incliné, le
+coefficient de frottement statique est $\mu_s = \num{0.2}$ et le coefficient de
+frottement cinétique est $\mu_c = \num{0.1}$.
+
+Les blocs sont initialement au repos.
+
+\begin{marginfigure}
+  \begin{tikzpicture}[scale=0.8]
+    \draw[very thick] (5, 1.9) circle (0.26);
+    \fill[black!30] (0, 0) -- ++(20:5.2) -- ++(82:0.2) -- ++(0.2, 0) -- ++(-82:0.2)
+                    -- ++(-35:3.1) -- cycle;
+    \fill (5, 1.9) circle (1pt);
+    \draw[rounded corners, very thick, rotate=20] (2, 0) rectangle node[rotate=22] {$m_1$} (3.1, 0.8);
+    \draw[rounded corners, very thick, shift={(6, 1.18)}, rotate=-35] (0, 0) rectangle node[rotate=-35] {$m_2$} (1.3, 0.9);
+    \draw[double, shift={(0, 0.4)}] (20:3) -- ++(20:2.17) arc (110:60:0.38) -- ++(-35:1.24);
+    \draw (1, 0) arc (0:20:1);
+    \node at (10:1.3) {$\theta_1$};
+    \draw (7.14, 0) arc (180:145:0.5);
+    \node at (6.8, 0.3) {$\theta_2$};
+  \end{tikzpicture}
+\end{marginfigure}
+
+Déterminer si les blocs bougent.  Si oui, déterminer l'accélération des deux
+blocs.  Déterminer la tension dans la corde qui relie les deux blocs.
+
+\section{Solution}
+
+Pour savoir si les blocs bougent, il faut faire la somme des forces qui
+agissent sur chacun des blocs et déterminer si cette somme est le vecteur nul.
+Si c'est le cas, la deuxième loi de Newton garantit que l'accélération est
+nulle et que les blocs ne bougent pas.
+
+Par contre, il est impossible de faire la somme des forces sans d'abord
+connaître l'orientation du frottement.  On sait que le frottement est orienté
+de telle sorte qu'il s'oppose au mouvement relatif des surfaces en contact.  Si
+les blocs ont tendance à glisser vers la gauche, le frottement sera vers la
+droite, et vice versa.  La première étape dans la résolution de ce problème est
+donc de déterminer la direction ``naturelle`` (i.e.: sans frottement) dans
+laquelle les blocs sont portés à se déplacer.  Ensuite, il faudra déterminer si
+la force de frottement statique est suffisante pour empêcher les blocs de
+bouger.
+
+\paragraph{Déterminer la tendance naturelle du système}
+
+On considère le problème en ignorant le frottement.  Puisqu'il n'y a pas de
+frottement et qu'on sait qu'il n'y a pas d'accélération dans la direction
+perpendiculaire aux plans inclinés, on peut considérer uniquement ce qui se
+passe dans la direction parallèle au plan incliné.  La figure ci-contre montre
+le système d'axe utilisé pour chacun des blocs et les forces qui agissent sur
+les blocs.
+
+\begin{marginfigure}
+  \begin{tikzpicture}[scale=0.8]
+    \draw[very thick] (5, 1.9) circle (0.26);
+    \fill[black!30] (0, 0) -- ++(20:5.2) -- ++(82:0.2) -- ++(0.2, 0) -- ++(-82:0.2)
+                    -- ++(-35:3.1) -- cycle;
+    \fill (5, 1.9) circle (1pt);
+    \draw[rounded corners, very thick, rotate=20] (2, 0) rectangle (3.1, 0.8);
+    \draw[rounded corners, very thick, shift={(6, 1.18)}, rotate=-35] (0, 0) rectangle (1.3, 0.9);
+    \draw (1, 0) arc (0:20:1);
+    \node at (10:1.3) {$\theta_1$};
+    \draw (7.14, 0) arc (180:145:0.5);
+    \node at (7.6, 0.3) {$\theta_2$};
+    \draw[->] (0.2, 2) -- ++(20:1) node[right] {$x$};
+    \draw[->] (0.2, 2) -- ++(110:1) node[left] {$y$};
+    \draw[->] (5.5, 3) -- ++(-35:1) node[right] {$x$};
+    \draw[->] (5.5, 3) -- ++(55:1) node[left] {$y$};
+    \coordinate (m1) at ($(0, 0.45) + (20:2.43)$);
+    \draw[->, very thick] (m1) -- ++(0, -1.7) node[below] {$\vec{F}_{g1}$};
+    \draw[->, very thick] (m1) -- ++(110:1.5) node[right] {$\vec{N}_{1}$};
+    \draw[->, very thick] (m1) -- ++(20:2) node[above] {$\vec{T}_{1}$};
+    \coordinate (m2) at (6.84, 1.15);
+    \draw[->, very thick] (m2) -- ++(0, -1.7) node[below] {$\vec{F}_{g2}$};
+    \draw[->, very thick] (m2) -- ++(55:1.5) node[right] {$\vec{N}_{2}$};
+    \draw[->, very thick] (m2) -- ++(145:2) node[above] {$\vec{T}_{2}$};
+  \end{tikzpicture}
+\end{marginfigure}
+
+Sur le bloc 1, la deuxième loi de Newton donne, pour la composante $x$,
+\begin{align}
+  F_{g1x} + T_{1x} &= m_1a_{1x} \nonumber \\
+  -m_1g \sin\theta_1 + T_{1} &= m_1a_{1x}.  \label{eqn:frott_ex1_m1}
+\end{align}
+Sur le bloc 2, on obtient
+\begin{align}
+  F_{g2x} + T_{2x} &= m_2a_{2x} \nonumber\\
+  m_2g \sin\theta_2 - T_{2} &= m_2a_{2x}.  \label{eqn:frott_ex1_m2}
+\end{align}
+Puisque la corde a une longueur constante (elle ne s'étire pas et ne peux pas
+se comprimer), les deux blocs ont une accélération de même module et avec le
+choix d'axe qu'on a fait,
+\[
+  a_{1x} = a_{2x} \equiv a_x.
+\]
+(Le symbole $\equiv$ est utilisé pour représenter une définition.  Ici, on
+l'utilise pour définir un nouveau symbole, $a_x$, qui est égal à la composante
+$x$ de l'accélération des deux blocs.)
+
+De plus, la corde a une masse négligeable donc la tension aura le même module
+partout dans la corde donc
+\[
+  T_1 = T_2 \equiv T.
+\]
+Les équations \ref{eqn:frott_ex1_m1} et \ref{eqn:frott_ex1_m2} peuvent s'écrire
+\begin{align}
+  -m_1g \sin\theta_1 + T &= m_1a_{x}  \label{eqn:frott_ex1_m1_s} \\
+  m_2g \sin\theta_2 - T &= m_2a_{x}.  \label{eqn:frott_ex1_m2_s}
+\end{align}
+
+En additionnant les équations \ref{eqn:frott_ex1_m1_s} et
+\ref{eqn:frott_ex1_m2_s},
+on obtient une équation dans laquelle la seule inconnue est la composante $x$
+de l'accélération:
+\begin{align*}
+  g(m_2\sin\theta_2 - m_1 \sin\theta_1) = (m_1 + m_2) a_x \\
+  a_x = \frac{g(m_2\sin\theta_2 - m_1 \sin\theta_1)}{m_1 + m_2}.
+\end{align*}
+La valeur qu'on obtient est $a_x = \SI{2.17}{\meter\per\second\squared}$ ce qui
+signifie que les blocs ont tendance à se déplacer vers la droite (direction des
+$x$ positifs pour les deux blocs).
+
+\paragraph{Déterminer si les blocs bougent}
+
+La tendance naturelle des blocs est de se déplacer vers la droite donc le
+frottement sera orienté vers la gauche, parallèlement aux surfaces.
+
+\begin{marginfigure}
+  \begin{tikzpicture}[scale=0.8]
+    \draw[very thick] (5, 1.9) circle (0.26);
+    \fill[black!30] (0, 0) -- ++(20:5.2) -- ++(82:0.2) -- ++(0.2, 0) -- ++(-82:0.2)
+                    -- ++(-35:3.1) -- cycle;
+    \fill (5, 1.9) circle (1pt);
+    \draw[rounded corners, very thick, rotate=20] (2, 0) rectangle (3.1, 0.8);
+    \draw[rounded corners, very thick, shift={(6, 1.18)}, rotate=-35] (0, 0) rectangle (1.3, 0.9);
+    \draw (1, 0) arc (0:20:1);
+    \node at (10:1.3) {$\theta_1$};
+    \draw (7.14, 0) arc (180:145:0.5);
+    \node at (7.6, 0.3) {$\theta_2$};
+    \draw[->] (0.2, 2) -- ++(20:1) node[right] {$x$};
+    \draw[->] (0.2, 2) -- ++(110:1) node[left] {$y$};
+    \draw[->] (5.5, 3) -- ++(-35:1) node[right] {$x$};
+    \draw[->] (5.5, 3) -- ++(55:1) node[left] {$y$};
+    \coordinate (m1) at ($(0, 0.45) + (20:2.43)$);
+    \draw[->, very thick] (m1) -- ++(0, -1.7) node[below] {$\vec{F}_{g1}$};
+    \draw[->, very thick] (m1) -- ++(110:1.5) node[right] {$\vec{N}_{1}$};
+    \draw[->, very thick] (m1) -- ++(20:2) node[above] {$\vec{T}_{1}$};
+    \draw[->, very thick] ($(m1) - (0.1, 0.4)$) -- ++(200:1) node[above] {$\vec{f}_{1}$};
+    \coordinate (m2) at (6.84, 1.15);
+    \draw[->, very thick] (m2) -- ++(0, -1.7) node[below] {$\vec{F}_{g2}$};
+    \draw[->, very thick] (m2) -- ++(55:1.5) node[right] {$\vec{N}_{2}$};
+    \draw[->, very thick] (m2) -- ++(145:2) node[above] {$\vec{T}_{2}$};
+    \draw[->, very thick] ($(m2) - (0.4, 0.2)$) -- ++(145:1) node[anchor=north east, fill=white, opacity=0.7, text opacity=1, rounded corners] {$\vec{f}_{2}$};
+  \end{tikzpicture}
+\end{marginfigure}
+
+Pour savoir si les blocs bougent, il faut déterminer si la force de frottement
+statique maximale est suffisante pour contrer l'accélération des blocs due à la
+force nette en direction des $x$ positifs.  En appliquant la deuxième loi de
+Newton en direction de l'axe $y$ pour chacun des blocs, on obtient deux
+équations qui permettent de trouver le module de la force normale sur chacun
+des blocs:
+\begin{align*}
+  N_1 - m_1g \cos\theta_1 &= 0 \\
+  N_2 - m_2g \cos\theta_2 &= 0.
+\end{align*}
+Le côté droit de l'égalité est nul parce qu'aucun des deux blocs n'a
+d'accélération en direction $y$.  Les forces normales ont donc les modules
+suivants
+\begin{align*}
+  N_1 &= m_1g \cos\theta_1 \\
+  N_2 &= m_2g \cos\theta_2
+\end{align*}
+ce qui permet de calculer le module de la force de frottement statique maximale
+pour chacun des blocs:
+\begin{align*}
+  f_{s, \mathrm{max} 1} &= \mu_s m_1 g \cos\theta_1 \\
+  f_{s, \mathrm{max} 2} &= \mu_s m_2 g \cos\theta_2.
+\end{align*}
+
+On applique la deuxième loi de Newton en direction $x$ pour obtenir les deux
+équations suivantes:
+\begin{align}
+  -\mu_s m_1 g\cos\theta_1 - m_1g\sin\theta_1 + T &= m_1a_x \label{eqn:frott_ex1_m1_fs} \\
+  -\mu_s m_2 g\cos\theta_2 - T + m_2g\sin\theta_2 &= m_2 a_x.  \label{eqn:frott_ex1_m2_fs}
+\end{align}
+La somme des deux équations donne
+\begin{equation}
+  -\mu_s g (m_1 \cos\theta_1 + m_2\cos\theta_2) + g (m_2 \sin\theta_2 -
+  m_1\sin\theta_1) = (m_1 + m_2)a_x  \label{eqn:frott_ex1_acc_fs}
+\end{equation}
+d'où on tire que $a_x = \SI{0.474}{\meter\per\second\squared}$.
+
+Ce résultat signifie que même si on appliquait le frottement statique maximum,
+les blocs bougeraient.  Autrement dit, les blocs se mettront nécessairement en
+mouvement et on pourra calculer l'accélération en utilisant le frottement
+cinétique.
+
+
+\paragraph{Déterminer l'accélération des blocs}
+
+On reprend la même analyse que dans la section précédente sauf qu'on utilise le
+coefficient de frottement cinétique plutôt que le coefficient de frottement
+statique.  Les équations \ref{eqn:frott_ex1_m1_fs} et \ref{eqn:frott_ex1_m2_fs}
+deviennent
+\begin{align}
+  -\mu_c m_1 g\cos\theta_1 - m_1g\sin\theta_1 + T &= m_1a_x \label{eqn:frott_ex1_m1_fc} \\
+  -\mu_c m_2 g\cos\theta_2 - T + m_2g\sin\theta_2 &= m_2 a_x.  \label{eqn:frott_ex1_m2_fc}
+\end{align}
+et leur somme donne
+\begin{equation}
+  -\mu_c g (m_1 \cos\theta_1 + m_2\cos\theta_2) + g (m_2 \sin\theta_2 -
+  m_1\sin\theta_1) = (m_1 + m_2)a_x.  \label{eqn:frott_ex1_acc_fc}
+\end{equation}
+Par conséquent, la composante $x$ de l'accélération des blocs est 
+\begin{align*}
+  a_x &= \frac{-\mu_c g (m_1 \cos\theta_1 + m_2\cos\theta_2) + g (m_2 \sin\theta_2 -
+  m_1\sin\theta_1)}{m_1 + m_2} \\
+    &= \SI{1.32175}{\meter\per\second\squared}
+\end{align*}
+\[
+  \boxed{a_x = \SI{1.32}{\meter\per\second\squared}}
+\]
+
+
+\paragraph{Déterminer le module de la tension dans la corde}
+
+Pour déterminer le module de la tension dans la corde, il suffit de remplacer
+la composante $x$ de l'accélération dans l'équation \ref{eqn:frott_ex1_m1_fc}
+ou \ref{eqn:frott_ex1_m2_fc} et d'isoler $T$.
+\begin{align*}
+  T &= m_1a_x + \mu_c m_1 g \cos\theta_1 + m_1 g \sin\theta_1 \\
+    &= \SI{27.9722}{\newton}
+\end{align*}
+\[
+  \boxed{T = \SI{28.0}{\newton}}
+\]
+
+\end{document}
