@@ -1,0 +1,64 @@
+\documentclass{beamer}
+
+
+\input{../common}
+
+
+\begin{document}
+
+
+\begin{frame}
+  \frametitle{Recul d'une arme à feu}
+
+  Les munitions .577 Tyrannosaur sont destinées à la chasse aux éléphants et
+  aux rhinocéros.  La balle qui est projetée a une masse de \SI{48.6}{\gram} et
+  peut atteindre une vitesse de \SI{750}{\meter\per\second}.
+
+  Le recul d'une carabine qui tire une telle munition est
+  \textbf{\href{https://www.youtube.com/watch?v=-EVqT3XEzss}{considérable}}.
+
+  Si on tire une .577 Tyrannosaur avec un fusil A-SQUARE Hannibal de
+  \SI{6.2}{\kilogram}, déterminer la vitesse de la carabine après que la balle
+  soit partie.
+
+  \uncover<2>{\alert{$v_F = \SI{5.88}{\meter\per\second}$}}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Pendule ballistique}
+
+  La balle (de masse \SI{48.6}{\gram}) parcourt une certaine distance dans les
+  airs puis s'enfonce dans un bloc de masse \SI{8}{\kilogram} suspendu au bout
+  de deux cordes de \SI{1.5}{\meter} de longueur.  La balle s'immobilise dans
+  le bloc qui monte d'une hauteur maximale de \SI{3}{\centi\meter} avant de
+  redescendre vers sa position d'équilibre.
+
+  Déterminer la vitesse de la balle juste avant sa collision avec le bloc.
+
+  \begin{center}
+    \begin{tikzpicture}[>=latex, scale=0.5]
+      \draw[ultra thick] (-1, 5) -- (1, 5);
+      \draw (-0.5, 5) -- (-0.5, 1);
+      \draw (0.5, 5) -- (0.5, 1);
+      \draw (-0.8, -1) rectangle (0.8, 1);
+      \draw[densely dashed] (-0.5, 5) -- ++(-65:4);
+      \draw[densely dashed] (0.5, 5) -- ++(-65:4);
+      \draw[densely dashed, shift={(1.7, 0.3)}] (-0.8, -1) rectangle (0.8, 1);
+      \draw[->|] (3.5, 0) -- (3.5, -0.7);
+      \draw[->|] (3.5, -1.7) -- (3.5, -1);
+      \node at (4, -0.85) {$h$};
+    \end{tikzpicture}
+  \end{center}
+
+  \uncover<2>{\alert{$v_B = \SI{127}{\meter\per\second}$}}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Explosion}
+\end{frame}
+  
+
+\end{document}
