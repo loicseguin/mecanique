@@ -1,0 +1,342 @@
+\documentclass{tufte-handout}
+
+\usepackage{etoolbox}
+\newtoggle{answer}
+\toggletrue{answer}
+\input{../common}
+
+\title{Devoir 1}
+\date{À remettre le lundi 20 octobre 2014, au début du cours.}
+
+\begin{document}
+
+\maketitle
+\vspace{0.5cm}
+
+Monsieur S. glisse dans une soucoupe sur une pente enneigée.  Il commence à
+glisser d'une hauteur de \SI{15}{\meter} sur une pente faisant un angle de
+\SI{35}{\degree} avec l'horizontale.  Lorsqu'il atteint le bas de la bute, il
+remonte le long d'une pente faisant un angle de \SI{15}{\degree} avec
+l'horizontale jusqu'à ce qu'il frappe un arbre à une hauteur de \SI{3}{\meter}.
+
+\begin{marginfigure}
+\begin{tikzpicture}[scale=1.0]
+  \draw[rounded corners] (0, 3) -- (0.3, 3) -- ++(-35:3);
+  \draw ($(0.3, 3) + (-35:3)$) arc (-125:-80:0.8) -- ++(15:2);
+  \begin{scope}[shift={(0.7, 2.82)}, rotate=-35, scale=0.5]
+    \draw (-0.5, 0) arc (-120:-60:1);
+    \begin{scope}[shift={(-0.25, 0.33)}]
+      \draw (0, 0.1) -- (0, -0.4) -- (0.25, -0.15) -- (0.5, -0.4);
+      \draw (0, 0.2) circle (3pt);
+      \draw (-0.3, 0.1) -- (0, -0.1) -- (0.3, 0.1);
+    \end{scope}
+  \end{scope}
+  \begin{scope}[shift={(0.3, 0.06)}]
+    \draw[rounded corners] (4.5, 1.5) -- (4.6, 1.6) -- (4.6, 2.4);
+    \draw[rounded corners] (4.9, 1.6) -- (4.8, 1.7) -- (4.8, 2.4);
+    \foreach \i in {1, ..., 100} {
+      \draw ($(4.7, 2.8) + 0.5*(rand, rand)$) -- ++($0.5*(rand, rand)$);
+    }
+  \end{scope}
+  \draw[densely dashed] (3, 1.15) -- (2, 1.15);
+  \draw (2.5, 1.15) arc (180:150:0.5);
+  \node at (2.3, 1.3) {\SI{35}{\degree}};
+  \draw[densely dashed] (3.4, 1.15) -- (4.4, 1.15);
+  \draw (4.1, 1.15) arc (0:15:0.7);
+  \node at (4.5, 1.3) {\SI{15}{\degree}};
+  \draw[|<->|] (0.2, 2.9) -- node[fill=white] {$h_0 = \SI{15}{\meter}$} (0.2, 1.15);
+  \draw[|<->|] (5.2, 1.6) -- node[right] {$h_f = \SI{3}{\meter}$} (5.2, 1.15);
+\end{tikzpicture}
+\end{marginfigure}
+
+
+Au bas de la pente, on peut supposer que la trajectoire de Monsieur S. est
+circulaire et que seul l'orientation de sa vitesse change, pas son module.
+
+La masse de Monsieur S. est $m = \SI{62}{\kilo\gram}$.
+
+Déterminer le module de la vitesse de Monsieur S. au moment où il entre en
+collision avec l'arbre.
+
+
+\iftoggle{answer}{
+
+  \begin{section}{Solution}
+
+  On divise le problème en deux parties : la descente et la montée. La vitesse
+  finale pour la descente aura le même module que la vitesse initiale pour la
+  montée puisqu'on dit que dans la partie circulaire en bas, seule la
+  direction de la vitesse change, pas sa grandeur.
+
+  \end{section}
+
+  \begin{subsection}{Descente}
+
+    La vitesse initiale au sommet de la pente est nulle. Si on peut déterminer
+    l'accélération de Monsieur S., on pourra utiliser une formule de
+    cinématique pour déterminer la vitesse en bas de la pente. Déterminer
+    l'accélération requiert de faire l'analyse des forces qui agissent sur
+    Monsieur S. et d'utiliser la deuxième loi de Newton.
+
+    \begin{marginfigure}
+    \begin{tikzpicture}[scale=1.0]
+      \draw[rounded corners] (0, 3) -- (0.3, 3) -- ++(-35:3);
+      \draw ($(0.3, 3) + (-35:3)$) arc (-125:-80:0.8);
+      \begin{scope}[shift={(0.7, 2.82)}, rotate=-35, scale=0.5]
+        \draw (-0.5, 0) arc (-120:-60:1);
+        \begin{scope}[shift={(-0.25, 0.33)}]
+          \draw (0, 0.1) -- (0, -0.4) -- (0.25, -0.15) -- (0.5, -0.4);
+          \draw (0, 0.2) circle (3pt);
+          \draw (-0.3, 0.1) -- (0, -0.1) -- (0.3, 0.1);
+        \end{scope}
+      \end{scope}
+      \draw[densely dashed] (3, 1.15) -- (2, 1.15);
+      \draw (2.5, 1.15) arc (180:150:0.5);
+      \node at (2.3, 1.3) {\SI{35}{\degree}};
+      \begin{scope}[shift={(2, 3)}, rotate=-35, scale=0.5]
+        \draw[->] (0, 0) -- (2, 0) node[below] {$x$};
+        \draw[->] (0, 0) -- (0, 2) node[left] {$y$};
+      \end{scope}
+      \draw[->, ultra thick] (0.7, 2.82) -- (0.7, 1) node[left] {$\vec{F}_g$};
+      \draw[->, ultra thick] (0.7, 2.82) -- ++(55:1.4) node[anchor=south east] {$\vec{N}$};
+    \end{tikzpicture}
+    \end{marginfigure}
+
+    Il n'y a que deux forces qui agissent sur Monsieur S. : la force exercée
+    par la surface de glissade et la force gravitationnelle. En utilisant le
+    système d'axes ci-contre, on peut déterminer les composantes de la force
+    nette.
+    \begin{eqnarray*}
+      F_x &=& mg \sin \SI{35}{\degree} \\
+      F_y &=& -mg \cos \SI{35}{\degree} + N
+    \end{eqnarray*}
+    La deuxième loi de Newton
+    \begin{equation*}
+      \vF = m\va
+    \end{equation*}
+    peut aussi s'écrire en terme des composantes ce qui donne les deux
+    équations suivantes
+    \begin{align}
+      mg \sin \SI{35}{\degree} = ma_x      \label{eq:forcex} \\
+      -mg \cos \SI{35}{\degree} + N = ma_y \label{eq:forcey}
+    \end{align}
+    En direction $y$, l'accélération est nécessairement nulle parce que
+    Monsieur S. ne s'élève pas au-dessus de la pente et ne s'enfonce pas dans
+    celle-ci. Par conséquent, le côté droit de l'équation \ref{eq:forcey} et
+    égal à zéro on peut déterminer le module de la force normale à partir de
+    cette équation. Dans ce problème particulier, la force normale ne nous
+    intéresse pas, donc on ne fait pas le calcul.
+
+    L'équation \ref{eq:forcex} permet de calculer la composante $x$ de
+    l'accélération
+    \begin{equation}
+      \label{eq:accx}
+      a_x = g\sin\SI{35}{\degree}.
+    \end{equation}
+    Il est intéressant de noter que l'accélération est indépendante de la
+    masse.
+
+    On peut maintenant utiliser l'équation de cinématique
+    \begin{equation*}
+      v_x^2 = v_{x0}^2 + 2a_x(x - x_0)
+    \end{equation*}
+    pour trouver le module de la vitesse au bas de la pente.  Pour ce calcul,
+    on place l'origine du système d'axes au sommet de la pente de telle sorte
+    que la position initiale soit nulle. À cette position, la vitesse est aussi
+    nulle et l'équation ci-dessus devient simplement
+    \begin{equation}
+      \label{eq:vaax}
+      v_x^2 = 2a_x x.
+    \end{equation}
+    \begin{marginfigure}
+    \begin{tikzpicture}[scale=1.0]
+      \draw[rounded corners] (0, 3) -- (0.3, 3) -- ++(-35:3);
+      \draw ($(0.3, 3) + (-35:3)$) arc (-125:-80:0.8);
+      \begin{scope}[shift={(0.7, 2.82)}, rotate=-35, scale=0.5]
+        \draw (-0.5, 0) arc (-120:-60:1);
+        \begin{scope}[shift={(-0.25, 0.33)}]
+          \draw (0, 0.1) -- (0, -0.4) -- (0.25, -0.15) -- (0.5, -0.4);
+          \draw (0, 0.2) circle (3pt);
+          \draw (-0.3, 0.1) -- (0, -0.1) -- (0.3, 0.1);
+        \end{scope}
+      \end{scope}
+      \draw[densely dashed] (3, 1.15) -- (2, 1.15);
+      \draw (2.5, 1.15) arc (180:150:0.5);
+      \node at (2.3, 1.3) {\SI{35}{\degree}};
+      \draw[ultra thick] (0.7, 1.13) -- ++(2.4, 0) --
+            node[anchor=south west] {$x$} (0.7, 2.82) --
+            node[left] {$h_0$} cycle;
+    \end{tikzpicture}
+    \end{marginfigure}
+    Comme la vitesse d'intérêt est celle en bas de la pente, la valeur de $x$
+    doit être celle qui correspond à cette position. À partir du triangle
+    rectangle dessiné ci-contre, on voit que la valeur de $x$ est donnée par
+    \begin{equation}
+      \label{eq:xtriang}
+      x = \frac{h_0}{\sin\SI{35}{\degree}} 
+    \end{equation}
+    
+    En combinant les équations \ref{eq:accx}, \ref{eq:vaax} et
+    \ref{eq:xtriang}, on obtient
+    \begin{align*}
+      v_x = \pm\sqrt{\frac{2h_0g\sin\SI{35}{\degree}}{\sin\SI{35}{\degree}}} \\
+      v_x = \pm \sqrt{2h_0g}
+    \end{align*}
+    On sait que Monsieur S. glisse vers le bas de la pente, soit vers les $x$
+    positifs, donc la composante $x$ de la vitesse doit être positive. On ne
+    conserve donc que la solution positive
+    \begin{equation*}
+      v_x = \sqrt{2h_0g}.
+    \end{equation*}
+    De plus, comme la vitesse est parallèle à la pente, sa composante $y$ est
+    nécessairement nulle et le module de la vitesse est tout simplement la
+    valeur absolue de la composante $x$
+    \begin{equation}
+    \label{eq:vfdescente}
+      v = \sqrt{2h_0g}.
+    \end{equation}
+    On remarque que le module de la vitesse au bas de la pente est indépendant
+    de l'angle que fait la pente avec l'horizontale.
+  \end{subsection}
+
+
+
+  \begin{subsection}{Remontée}
+    La vitesse initiale pour la phase de remontée est de même module que celui
+    de la vitesse finale pour la phase de descente donc
+    \begin{equation*}
+      v_0 = \sqrt{2h_0g}.
+    \end{equation*}
+    L'analyse des forces se fait de façon analogue à celle effectuée pour la
+    descente.
+
+    \begin{marginfigure}
+    \begin{tikzpicture}[scale=1.0]
+      \draw ($(0.3, 3) + (-35:3)$) arc (-125:-80:0.8) -- ++(15:2);
+      \begin{scope}[shift={(3.4, 1.25)}, rotate=15, scale=0.5]
+        \draw (-0.5, 0) arc (-120:-60:1);
+        \begin{scope}[shift={(-0.25, 0.33)}]
+          \draw (0, 0.1) -- (0, -0.4) -- (0.25, -0.15) -- (0.5, -0.4);
+          \draw (0, 0.2) circle (3pt);
+          \draw (-0.3, 0.1) -- (0, -0.1) -- (0.3, 0.1);
+        \end{scope}
+      \end{scope}
+      \begin{scope}[shift={(5, 2)}, rotate=15, scale=0.5]
+        \draw[->] (0, 0) -- (2, 0) node[below] {$x$};
+        \draw[->] (0, 0) -- (0, 2) node[left] {$y$};
+      \end{scope}
+      \draw[densely dashed] (3.4, 1.15) -- (4.4, 1.15);
+      \draw (4.1, 1.15) arc (0:15:0.7);
+      \node at (4.5, 1.3) {\SI{15}{\degree}};
+      \draw[->, ultra thick] (3.4, 1.25) -- ++(0, -1.5) node[left] {$\vec{F}_g$};
+      \draw[->, ultra thick] (3.4, 1.25) -- ++(105:1.4) node[anchor=south east] {$\vec{N}$};
+    \end{tikzpicture}
+    \end{marginfigure}
+
+    On ne s'intéresse encore une fois qu'à la composante $x$ de la force nette
+    \begin{eqnarray*}
+      F_x &=& -mg \sin \SI{15}{\degree} \\
+    \end{eqnarray*}
+    La deuxième loi de Newton donne
+    \begin{align*}
+      -mg \sin \SI{15}{\degree} = ma_x
+    \end{align*}
+
+    La composante $x$ de l'accélération est donc
+    \begin{equation}
+      \label{eq:accxmonte}
+      a_x = -g\sin\SI{15}{\degree}.
+    \end{equation}
+    Il est intéressant de noter que l'accélération est indépendante de la
+    masse.
+
+    On peut maintenant utiliser l'équation de cinématique
+    \begin{equation*}
+      v_x^2 = v_{x0}^2 + 2a_x(x - x_0)
+    \end{equation*}
+    pour trouver le module de la vitesse lorsque Monsieur S. heurte l'arbre.
+    Pour ce calcul, on place l'origine du système d'axes au bas de la pente de
+    telle sorte que la position initiale soit nulle. À cette position, la
+    vitesse a le même module que la vitesse finale de la descente et l'équation
+    ci-dessus devient
+    \begin{equation}
+      \label{eq:vaaxmonte}
+      v_x^2 = 2h_0g + 2a_x x.
+    \end{equation}
+    \begin{marginfigure}
+    \begin{tikzpicture}[scale=1.0]
+      \draw ($(0.3, 3) + (-35:3)$) arc (-125:-80:0.8) -- ++(15:2);
+      \begin{scope}[shift={(3.4, 1.25)}, rotate=15, scale=0.5]
+        \draw (-0.5, 0) arc (-120:-60:1);
+        \begin{scope}[shift={(-0.25, 0.33)}]
+          \draw (0, 0.1) -- (0, -0.4) -- (0.25, -0.15) -- (0.5, -0.4);
+          \draw (0, 0.2) circle (3pt);
+          \draw (-0.3, 0.1) -- (0, -0.1) -- (0.3, 0.1);
+        \end{scope}
+      \end{scope}
+      \draw[densely dashed] (3.4, 1.15) -- (4.4, 1.15);
+      \draw (4.1, 1.15) arc (0:15:0.7);
+      \node at (4.5, 1.3) {\SI{15}{\degree}};
+      \draw[ultra thick] (3.4, 1.15) -- ++(2, 0) --
+              node[right] {$h_f$} ++(0, 0.56) --
+              node[anchor=south east] {$x$} cycle;
+    \end{tikzpicture}
+    \end{marginfigure}
+    À partir du triangle
+    rectangle dessiné ci-contre, on voit que la valeur de $x$ à la position de
+    l'arbre est donnée par
+    \begin{equation}
+      \label{eq:xtriangmonte}
+      x = \frac{h_f}{\sin\SI{15}{\degree}} 
+    \end{equation}
+    
+    En combinant les équations \ref{eq:accxmonte}, \ref{eq:vaaxmonte} et
+    \ref{eq:xtriangmonte}, on obtient
+    \begin{align*}
+      v_x^2 &= 2h_0g - \frac{2h_fg\sin\SI{15}{\degree}}{\sin\SI{15}{\degree}} \\
+      v_x^2 &= 2g(h_0 - h_f) \\
+      v_x &= \pm\sqrt{2g(h_0 - h_f)}
+    \end{align*}
+    On sait que Monsieur S. glisse vers le haut de la pente, soit vers les $x$
+    positifs, donc la composante $x$ de la vitesse doit être positive. On ne
+    conserve donc que la solution positive
+    \begin{equation*}
+      v_x = \sqrt{2g(h_0 - h_f)}.
+    \end{equation*}
+    De plus, comme la vitesse est parallèle à la pente, sa composante $y$ est
+    nécessairement nulle et le module de la vitesse est tout simplement la
+    valeur absolue de la composante $x$
+    \begin{equation}
+    \label{eq:vfdescente}
+      v = \sqrt{2g(h_0 - h_f)}.
+    \end{equation}
+    Ce résultat ne dépend que de la hauteur initiale, de la hauteur finale et
+    de l'accélération gravitationnelle terrestre!
+
+    Le calcul de la valeur numérique donne
+    \begin{align*}
+      v = \sqrt{2 \times \SI{9.8}{\meter\per\second\squared} \times
+          (\SI{15}{m} - \SI{3}{m})}
+    \end{align*}
+    \begin{equation*}
+      \boxed{v = \SI{15.3}{\meter\per\second}}
+    \end{equation*}
+    Ce module de vitesse est très élevé. Une collision entre un être humain
+    sans protection et un arbre à cette vitesse serait probablement fatale.
+    Cette valeur élevée est probablement due au fait que le frottement entre la
+    soucoupe et la surface de glissade est complètement négligée dans ce
+    problème.
+  \end{subsection}
+
+  \begin{subsection}{Remarques}
+    La résolution de ce problème montre que dans une situation qui n'implique
+    que la force de gravité, le module de la vitesse finale est complètement
+    indépendant de la trajectoire exacte suivie par un corps. Il est déterminé
+    uniquement par la hauteur initiale et la hauteur finale du corps. Ce
+    résultat réapparaîtra lorsqu'on étudiera les concepts de travail et
+    d'énergie.
+  \end{subsection}
+}
+
+\end{document}
+
